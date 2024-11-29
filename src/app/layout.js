@@ -6,7 +6,6 @@ import "./globals.css"; // Ensure this file contains global styles
 import Navbar from "./components/Navbar"; // Adjust path if necessary
 import Footer from "./components/Footer";
 
-// 1. Create the ThemeContext
 const ThemeContext = createContext();
 
 export const useTheme = () => useContext(ThemeContext);
@@ -23,17 +22,14 @@ const geistMono = localFont({
 });
 
 export default function RootLayout({ children }) {
-  // 2. Set default theme to 'light'
   const [theme, setTheme] = useState("light");
 
-  // 3. Toggle theme function
   const toggleTheme = () => {
     setTheme((prevTheme) => (prevTheme === "light" ? "dark" : "light"));
   };
 
   return (
     <html lang="en">
-      {/* 4. Provide ThemeContext to the app */}
       <ThemeContext.Provider value={{ theme, toggleTheme }}>
         <body
           className={`${geistSans.variable} ${geistMono.variable} antialiased overflow-x-hidden`}

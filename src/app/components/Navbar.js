@@ -5,6 +5,7 @@ import { BsBoxSeam } from "react-icons/bs";
 import { IoSunnyOutline } from "react-icons/io5";
 import { BsMoon } from "react-icons/bs"; 
 import { useTheme } from "../layout";
+import Link from 'next/link';
 
 const Navbar = () => {
   const initialTime = 1 * 24 * 60 * 60 + 14 * 60 * 60 + 20 * 60 + 10;
@@ -46,9 +47,9 @@ const Navbar = () => {
       </p>
       <div className='hidden md:flex justify-between w-full text-white px-10 py-2 border-b'>
         <div className='text-sm flex gap-4 items-center'>
-            <p className='flex items-center gap-1'><span><BsBoxSeam /></span>Track Record</p>
-            <p>About us</p>
-            <p>Contact</p>
+            <Link href='/tracking' className='flex items-center gap-1'><span><BsBoxSeam /></span>Track Record</Link>
+            <Link href='/about'>About us</Link>
+            <Link href='/contact'>Contact</Link>
             <p>Vendor Dashboard</p>
         </div>
         <div className='text-sm flex gap-4 items-center'>

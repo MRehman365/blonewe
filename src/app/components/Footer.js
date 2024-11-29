@@ -8,7 +8,7 @@ import img2 from '../assets/google-play.webp'
 
 export default function Footer() {
   return (
-    <footer className="w-full border-t">
+    <footer className="w-full border-t overflow-hidden">
       <div className="max-w-7xl px-4 py-8 mx-auto">
         <div className="grid grid-cols-1 gap-8 md:grid-cols-2 lg:grid-cols-4">
           {/* Help Section */}

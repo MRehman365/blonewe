@@ -20,11 +20,22 @@ import cat6 from "./assets/beauty.png";
 import dis1 from "./assets/banner-13.jpg";
 import dis2 from "./assets/banner-14.jpg";
 import dis3 from "./assets/banner-15.jpg";
+import banner1 from "./assets/banner-16.jpg";
+import banner2 from "./assets/banner-17.jpg";
 import "slick-carousel/slick/slick.css";
 import "slick-carousel/slick/slick-theme.css";
 import Slider from "react-slick";
 import Link from "next/link";
 import Electronics from "./components/Electronic-and-Watches";
+import AllStore from "./components/All-Store";
+import FeauredProduct from "./components/Feaured-Product";
+import ModernFerniture from "./components/Modern-Ferniture";
+import NewLatter from "./components/NewLatter";
+import { useState } from "react";
+import ProductDetail from "./components/ProductDetail";
+import LatestProduct from "./components/LatestProduct";
+import SubNewsLatter from "./components/SubNewsLatter";
+import Features from "./components/Features";
 
 const services = [
   {
@@ -60,6 +71,11 @@ const sliderCat = [
 ];
 
 export default function Home() {
+  const [isPopupVisible, setIsPopupVisible] = useState(false);
+
+  const handleOpenPopup = () => setIsPopupVisible(true);
+  const handleClosePopup = () => setIsPopupVisible(false);
+
   const [sliderRef] = useKeenSlider({
     loop: true,
     slidesPerView: 1,
@@ -114,7 +130,7 @@ export default function Home() {
       {/* Slider Section */}
       <div className="p-2">
         <div
-          className="keen-slider max-w-[1450px] mx-auto rounded-lg overflow-hidden"
+          className="keen-slider max-w-7xl mx-auto rounded-lg overflow-hidden"
           ref={sliderRef}
         >
           {sliderImages.map((image, index) => (
@@ -128,7 +144,7 @@ export default function Home() {
           ))}
         </div>
       </div>
-      <div className="p-2 max-w-[1450px] mx-auto rounded-lg overflow-hidden">
+      <div className="p-2 max-w-7xl mx-auto rounded-lg overflow-hidden">
         <Slider {...settings} className="grid grid-cols-6">
           {sliderCat.map((image, index) => (
             <div
@@ -148,7 +164,7 @@ export default function Home() {
         </Slider>
       </div>
 
-      <div className="grid grid-cols-1 md:grid-cols-3 grid-rows-1 gap-4 max-w-[1450px] mx-auto p-2">
+      <div className="grid grid-cols-1 md:grid-cols-3 grid-rows-1 gap-4 max-w-7xl mx-auto p-2">
         <div className="rounded-md overflow-hidden">
           <Image
             src={dis1}
@@ -171,20 +187,77 @@ export default function Home() {
           />
         </div>
       </div>
+      <LatestProduct  handleview={handleOpenPopup} />
 
-      <div className="w-full p-2 mt-3 max-w-[1450px] mx-auto rounded-md font-mono">
-      <div className="p-4 rounded-md mx-auto flex flex-wrap items-center justify-center gap-2 text-lg font-semibold text-center w-full bg-red-50 text-red-500 sm:gap-4">
-        <span>Super discount for your</span>
-        <Link href="#" className="underline">
-          first purchase
-        </Link>
-        <code className="rounded-md border border-dashed border-red-200 bg-white px-2 py-1 font-mono font-[400]">
-          FREE25CAD
-        </code>
-        <span className=" font-mono font-[400]">Use discount code in the checkout!</span>
+      <div className="w-full p-2 mt-3 max-w-7xl mx-auto rounded-md font-mono">
+        <div className="p-4 rounded-md mx-auto flex flex-wrap items-center justify-center gap-2 text-lg font-semibold text-center w-full bg-red-50 text-red-500 sm:gap-4">
+          <span>Super discount for your</span>
+          <Link href="#" className="underline">
+            first purchase
+          </Link>
+          <code className="rounded-md border border-dashed border-red-200 bg-white px-2 py-1 font-mono font-[400]">
+            FREE25CAD
+          </code>
+          <span className=" font-mono font-[400]">
+            Use discount code in the checkout!
+          </span>
+        </div>
       </div>
-    </div>
-    <Electronics />
+      <Electronics handleview={handleOpenPopup} />
+      <div className="max-w-7xl mx-auto overflow-hidden rounded-md">
+        <Image
+          src={banner1}
+          alt="banner"
+          className="w-full h-auto object-cover rounded-md"
+        />
+      </div>
+
+      <FeauredProduct handleview={handleOpenPopup} />
+
+      <div className="grid grid-cols-1 md:grid-cols-2 grid-rows-1 gap-4 max-w-7xl mx-auto p-2">
+        <div className="rounded-md overflow-hidden">
+          <Image
+            src={dis1}
+            alt="banner"
+            className="h-full w-full object-cover"
+          />
+        </div>
+        <div className="rounded-md overflow-hidden">
+          <Image
+            src={dis2}
+            alt="banner"
+            className="h-full w-full object-cover"
+          />
+        </div>
+      </div>
+      <ModernFerniture handleview={handleOpenPopup} />
+      <div className="max-w-7xl mx-auto overflow-hidden rounded-md">
+        <Image
+          src={banner2}
+          alt="banner"
+          className="w-full h-[400px] md:h-auto object-cover rounded-md"
+        />
+      </div>
+      <NewLatter />
+      <Features />
+      <SubNewsLatter />
+
+      {isPopupVisible && (
+        <div className="fixed inset-0 z-50 flex items-center justify-center bg-black bg-opacity-50">
+          <div className="relative w-full max-w-4xl rounded-lg shadow-lg">
+            {/* Close Button */}
+            <button
+              className="absolute top-4 right-4 text-gray-500 hover:text-gray-700"
+              onClick={handleClosePopup}
+            >
+              <span className="text-2xl md:text-4xl font-bold">&times;</span>
+            </button>
+
+            {/* Product Detail Component */}
+            <ProductDetail />
+          </div>
+        </div>
+      )}
     </div>
   );
 }

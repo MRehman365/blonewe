@@ -22,3 +22,7 @@ body {
  overflow-x: hidden;
   
 }
+
+.bg-about{
+  background-image: url("./assets/about-image-1.jpg");
+}

@@ -14,8 +14,9 @@ import prodcut7 from '../assets/image-1-16-450x450.png'
 import prodcut8 from '../assets/image-1-17-450x450.png'
 import prodcut9 from '../assets/image-1-7-450x450.png'
 import prodcut10 from '../assets/image-1-17-450x450.png'
+import Link from "next/link"
 
-export default function Electronics({handleview}) {
+export default function ModernFerniture({handleview}) {
   const products = [
     {
       id: "1",
@@ -123,11 +124,11 @@ export default function Electronics({handleview}) {
   return (
     <div className="max-w-7xl mx-auto py-8">
       <div className="flex justify-between py-2">
-        <p className="text-base md:text-lg">Electronics & Watches</p>
-        <p className="text-sm md:text-base ">View all</p>
+        <p className="text-base md:text-lg">Modren Fernitures</p>
+        <p className="text-sm md:text-base hover:text-[#004798]">View all</p>
       </div>
       <div className="flex flex-col lg:flex-row gap-8">
-        <div className="lg:w-1/4 bg-black text-white p-6 rounded-lg">
+        <div className="lg:w-1/4 bg-gray-500 text-white p-6 rounded-lg">
           <div className="mb-6">
             <p className="text-sm font-medium text-green-400 mb-2">Weekend Discount</p>
             <h2 className="text-3xl font-bold mb-4">We can solve any computer problem</h2>
@@ -152,12 +153,14 @@ export default function Electronics({handleview}) {
                   onMouseEnter={(e) => e.currentTarget.classList.add('hovered')}
                   onMouseLeave={(e) => e.currentTarget.classList.remove('hovered')}
                 >
+                <Link href="/product">
                   <Image
                     src={product.image}
                     alt={product.name}
                     fill
                     className="object-cover transition-transform duration-300 group-hover:scale-105"
                   />
+                  </Link>
                   {product.discount > 0 && (
                     <div className="absolute left-2 bottom-2 bg-red-500 text-white text-xs font-bold px-2 py-1 rounded">
                       {product.discount}%

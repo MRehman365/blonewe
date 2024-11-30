@@ -87,7 +87,7 @@ export default function ProductDetail({handleClosePopup}) {
 
             <div className="flex gap-2">
             {[FaFacebookF, FaTwitter, FaLinkedinIn, FaRedditAlien, FaWhatsapp].map((Icon, index) => (
-              <button key={index} className="p-2 border border-gray-300 rounded-full hover:text-blue-700 hover:border-blue-700 transition duration-200">
+              <button key={index} className="p-2 border text-black border-gray-300 rounded-full hover:text-blue-700 hover:border-blue-700 transition duration-200">
                 <Icon className="h-4 w-4" />
               </button>
             ))}

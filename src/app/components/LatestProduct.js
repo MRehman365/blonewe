@@ -262,11 +262,9 @@ const LatestProduct = ({ handleview }) => {
                   </div>
                 </div>
                 <div className="flex items-center justify-between mt-auto">
-                  <div className="flex gap-2">
-                    <button className="px-3 py-2 bg-[#004798] text-white text-sm font-medium rounded-md hover:bg-[#004798]/80">
+                    <button className="px-3 py-2 w-full bg-[#004798] text-white text-sm font-medium rounded-md hover:bg-[#004798]/80">
                       Add to cart
                     </button>
-                  </div>
                 </div>
               </div>
             </div>

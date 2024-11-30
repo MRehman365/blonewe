@@ -31,21 +31,7 @@ const Page = () => {
   const handleOpenPopup = () => setIsPopupVisible(true);
   const handleClosePopup = () => setIsPopupVisible(false);
 
-  const categories = [
-    { id: "electronics", name: "Electronics" },
-    { id: "fashion", name: "Fashion" },
-    { id: "furniture", name: "Furniture" },
-    { id: "auto-parts", name: "Auto Parts" },
-    { id: "grocery", name: "Grocery" },
-    { id: "cosmetic", name: "Cosmetic" },
-    { id: "kids", name: "Kids" },
-    { id: "jewellery", name: "Jewellery" },
-    { id: "sports", name: "Sports" },
-    { id: "sport1", name: "Discount Goods" },
-    { id: "sport2", name: "We Recommended" },
-    { id: "sport3", name: "New Product" },
-    { id: "sport4", name: "Best Selling" },
-  ];
+
 
   const settings = {
     infinite: true,

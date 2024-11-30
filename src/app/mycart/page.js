@@ -5,6 +5,7 @@ import { FaBookmark, FaRegBookmark } from "react-icons/fa";
 import Image from "next/image";
 import { useState } from "react";
 import img1 from "../assets/image-1-1-1-450x450.png";
+import { MdMenu } from "react-icons/md";
 
 export default function ShoppingCart() {
   const products = [
@@ -249,8 +250,7 @@ export default function ShoppingCart() {
         </div>
       </div>
 
-      {/* Mobile View Navbar */}
-      
+
     </div>
   );
 }

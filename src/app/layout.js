@@ -5,6 +5,7 @@ import localFont from "next/font/local";
 import "./globals.css"; // Ensure this file contains global styles
 import Navbar from "./components/Navbar"; // Adjust path if necessary
 import Footer from "./components/Footer";
+import MobileFooter from "./components/MobileFooter";
 
 const ThemeContext = createContext();
 
@@ -41,6 +42,7 @@ export default function RootLayout({ children }) {
           <Navbar />
           <main>{children}</main>
           <Footer />
+          <MobileFooter  />
         </body>
       </ThemeContext.Provider>
     </html>

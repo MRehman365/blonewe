@@ -12,6 +12,7 @@ import { useTheme } from "../layout";
 import Link from "next/link";
 import Image from "next/image";
 import logo from "../assets/logo-marketplace-light.png";
+import logo2 from "../assets/logo-marketplace-light.webp";
 import { FaRegCircleUser, FaRegHeart } from "react-icons/fa6";
 import { TbArmchair, TbMoodKid } from "react-icons/tb";
 import { ImMobile2 } from "react-icons/im";
@@ -20,6 +21,7 @@ import { CiDiscount1 } from "react-icons/ci";
 import { MdMenu, MdOutlineMenu, MdOutlineSportsTennis } from "react-icons/md";
 import { GiCrystalEarrings, GiLipstick } from "react-icons/gi";
 import { FiShoppingBag } from "react-icons/fi";
+import { IoMdClose } from "react-icons/io";
 
 const categories = [
   {
@@ -389,9 +391,9 @@ const Navbar = () => {
 
       {/* Mobile View Navbar */}
       <div>
-        <div className="flex justify-between items-center text-white p-2 px-4 md:hidden bg-primary fixed top-0 w-full z-[9999]">
+        <div className="flex justify-between items-center text-white p-2 px-4 md:hidden bg-primary fixed top-0 w-full z-[99]">
           <div>
-            <MdOutlineMenu className="h-6 w-6" />
+            <MdOutlineMenu className="h-6 w-6"  onClick={() => setOpenNav(!openNavbar)} />
           </div>
           <Link href="/" className="flex items-center space-x-2 mb-4 md:mb-0">
             <Image src={logo} alt="Blonwe Logo" className="w-[100px] h-auto" />
@@ -403,6 +405,21 @@ const Navbar = () => {
             </span>
           </Link>
         </div>
+
+        {openNavbar && (
+          <div   className={`w-[80%] fixed md:sticky min-h-[100vh] top-0 z-[100] ${
+            openNavbar ? "left-0" : "-left-[100%]"
+          } bg-white md:bg-[#ffffff04]  z-50 p-2 transition-all duration-300`}>
+            <div className="flex justify-between items-center">
+            <Link href="/" className="flex items-center space-x-2 mb-4 md:mb-0">
+            <Image src={logo2} alt="Blonwe Logo" className="w-[100px] h-auto" />
+          </Link>
+          <div>
+          <IoMdClose />
+          </div>
+            </div>
+          </div>
+        )}
       </div>
     </div>
   );

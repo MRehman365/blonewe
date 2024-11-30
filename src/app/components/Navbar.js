@@ -50,7 +50,7 @@ const Navbar = () => {
             <Link href='/tracking' className='flex items-center gap-1'><span><BsBoxSeam /></span>Track Record</Link>
             <Link href='/about'>About us</Link>
             <Link href='/contact'>Contact</Link>
-            <p>Vendor Dashboard</p>
+            <Link href='/myaccount'>Vendor Dashboard</Link>
         </div>
         <div className='text-sm flex gap-4 items-center'>
             <p>English</p>

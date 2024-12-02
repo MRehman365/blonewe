@@ -167,10 +167,10 @@ const RelatedProduct = ({handleview}) => {
        <Slider {...settings} className="grid gap-1">
        
             {products.map((product, i) => (
-              <div key={i}
+              <div key={i} className='h-full'
               >
               <div 
-      className="group relative overflow-hidden w-full transition-all duration-300 h-full flex flex-col border border-gray-300 mx-auto"
+      className="group relative overflow-hidden w-full h-full transition-all duration-300 flex flex-col border border-gray-300 mx-auto"
    
     >
       <div className="relative aspect-square">
@@ -203,7 +203,7 @@ const RelatedProduct = ({handleview}) => {
               </div>
             )}
           </div>
-        <h3 className="mb-2 text-sm font-medium line-clamp-2">{name}</h3>
+        <h3 className="mb-2 text-sm font-medium line-clamp-2">{product.name}</h3>
         <div className="h-[25px] overflow-hidden relative">
         <div className="absolute flex flex-col gap-2 bottom-0 group-hover:-bottom-7 transform transition-all duration-500">
         <div className="text-[12px] "><span className="text-gray-400">Store:</span> Groci</div>

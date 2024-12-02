@@ -1,7 +1,13 @@
 "use client";
 
 import React, { useState, useEffect } from "react";
-import { BsBoxSeam, BsChevronDown } from "react-icons/bs";
+import {
+  BsBoxSeam,
+  BsChevronDown,
+  BsHeart,
+  BsMailbox,
+  BsPhone,
+} from "react-icons/bs";
 import {
   IoCarSportOutline,
   IoStorefrontOutline,
@@ -13,15 +19,22 @@ import Link from "next/link";
 import Image from "next/image";
 import logo from "../assets/logo-marketplace-light.png";
 import logo2 from "../assets/logo-marketplace-light.webp";
-import { FaRegCircleUser, FaRegHeart } from "react-icons/fa6";
+import { FaRegCircleUser, FaRegHeart, FaScaleBalanced } from "react-icons/fa6";
 import { TbArmchair, TbMoodKid } from "react-icons/tb";
 import { ImMobile2 } from "react-icons/im";
 import { PiDress } from "react-icons/pi";
-import { CiDiscount1 } from "react-icons/ci";
+import { CiDiscount1, CiUser } from "react-icons/ci";
 import { MdMenu, MdOutlineMenu, MdOutlineSportsTennis } from "react-icons/md";
 import { GiCrystalEarrings, GiLipstick } from "react-icons/gi";
-import { FiShoppingBag } from "react-icons/fi";
+import {
+  FiChevronDown,
+  FiMessageSquare,
+  FiShoppingBag,
+  FiX,
+} from "react-icons/fi";
 import { IoMdClose } from "react-icons/io";
+import DiscountedProduct from "./DiscountedProduct";
+import ProductDetail from "./ProductDetail";
 
 const categories = [
   {
@@ -66,12 +79,17 @@ const categories = [
   { id: "sport3", name: "New Product" },
   { id: "sport4", name: "Best Selling" },
 ];
+
 const Navbar = () => {
   const initialTime = 1 * 24 * 60 * 60 + 14 * 60 * 60 + 20 * 60 + 10;
   const [isOpen, setIsOpen] = useState(false);
   const [timeRemaining, setTimeRemaining] = useState(initialTime);
   const [openNavbar, setOpenNav] = useState(false);
+  const [isPopupVisible, setIsPopupVisible] = useState(false);
   const { theme, toggleTheme } = useTheme();
+
+  const [shopOpen, setShopOpen] = useState(false);
+  const toggleShop = () => setShopOpen(!shopOpen);
 
   useEffect(() => {
     const interval = setInterval(() => {
@@ -85,6 +103,9 @@ const Navbar = () => {
   const hours = Math.floor((timeRemaining % (24 * 60 * 60)) / (60 * 60));
   const minutes = Math.floor((timeRemaining % (60 * 60)) / 60);
   const seconds = timeRemaining % 60;
+
+  const handleOpenPopup = () => setIsPopupVisible(true);
+  const handleClosePopup = () => setIsPopupVisible(false);
 
   return (
     <div className="">
@@ -174,7 +195,7 @@ const Navbar = () => {
 
             {/* Account Actions */}
             <div className="flex items-center space-x-6">
-              <Link href="/myaccount" className="flex flex-col items-center">
+              <Link href="/authentication" className="flex flex-col items-center">
                 <FaRegCircleUser className="h-6 w-6 mb-1" />
                 <span className="text-[13px]">My Account</span>
               </Link>
@@ -262,9 +283,9 @@ const Navbar = () => {
                 Home
               </Link>
 
-              <div className="relative group">
-                <a
-                  href="#"
+              <div className=" group">
+                <Link
+                  href="/shop"
                   className="flex items-center text-gray-500 hover:text-[#003B95]"
                 >
                   Shop
@@ -282,64 +303,157 @@ const Navbar = () => {
                       d="M19 9l-7 7-7-7"
                     />
                   </svg>
-                </a>
-                <div className="absolute z-10 hidden group-hover:block bg-white border rounded-md mt-2 py-2 w-48">
-                  <a
-                    href="#"
-                    className="block px-4 py-2 text-gray-500 hover:bg-gray-100"
+                </Link>
+                <div className="absolute left-1/2 transform -translate-x-1/2 z-10 hidden group-hover:block bg-white border rounded-md  py-2 w-[80%]">
+                  <nav
+                    className="w-full p-6 bg-white"
+                    aria-label="Shop navigation"
                   >
-                    New Arrivals
-                  </a>
-                  <a
-                    href="#"
-                    className="block px-4 py-2 text-gray-500 hover:bg-gray-100"
-                  >
-                    Best Sellers
-                  </a>
-                  <a
-                    href="#"
-                    className="block px-4 py-2 text-gray-500 hover:bg-gray-100"
-                  >
-                    Sale Items
-                  </a>
+                    <div className="max-w-5xl mx-auto">
+                      <div className="grid grid-cols-1 gap-8 md:grid-cols-2 lg:grid-cols-4">
+                        {/* Shop Lists Column */}
+                        <div className="space-y-4">
+                          <h2 className="text-lg font-semibold">Shop Lists</h2>
+                          <ul className="space-y-2">
+                            {[
+                              "Shop Default",
+                              "Shop Right Sidebar",
+                              "Shop Wide",
+                              "Filters Area",
+                              "List Left Sidebar",
+                              "Load More Button",
+                              "Infinite Scrolling",
+                            ].map((item) => (
+                              <li key={item}>
+                                <Link
+                                  href="#"
+                                  className="text-gray-600 text-sm hover:text-gray-900 transition-colors"
+                                >
+                                  {item}
+                                </Link>
+                              </li>
+                            ))}
+                          </ul>
+                        </div>
+
+                        {/* Product Detail Column */}
+                        <div className="space-y-4">
+                          <h2 className="text-lg font-semibold">
+                            Product Detail
+                          </h2>
+                          <ul className="space-y-2">
+                            {[
+                              "Product Variable",
+                              "Product Default",
+                              "Product Grouped",
+                              "Product External",
+                              "Product Downloadable",
+                              "Product With Video",
+                            ].map((item) => (
+                              <li key={item}>
+                                <Link
+                                  href="#"
+                                  className="text-gray-600 text-sm hover:text-gray-900 transition-colors"
+                                >
+                                  {item}
+                                </Link>
+                              </li>
+                            ))}
+                          </ul>
+                        </div>
+
+                        {/* Shop Pages Column */}
+                        <div className="space-y-4">
+                          <h2 className="text-lg font-semibold">Shop Pages</h2>
+                          <ul className="space-y-2">
+                            {[
+                              "Cart",
+                              "Checkout",
+                              "My account",
+                              "Wishlist",
+                              "Order Tracking",
+                              "Featured Products",
+                              "Best Selling Products",
+                            ].map((item) => (
+                              <li key={item}>
+                                <Link
+                                  href="#"
+                                  className="text-gray-600 text-sm hover:text-gray-900 transition-colors"
+                                >
+                                  {item}
+                                </Link>
+                              </li>
+                            ))}
+                          </ul>
+                        </div>
+
+                        {/* Shop Layouts Column */}
+                        <div className="space-y-4">
+                          <h2 className="text-lg font-semibold">
+                            Shop Layouts
+                          </h2>
+                          <ul className="space-y-2">
+                            {[
+                              "Two Columns",
+                              "Three Columns",
+                              "Three Columns Wide",
+                              "Four Columns",
+                              "Four Columns Wide",
+                              "Five Columns Wide",
+                              "Six Columns Wide",
+                            ].map((item) => (
+                              <li key={item}>
+                                <Link
+                                  href="#"
+                                  className="text-gray-600 text-sm hover:text-gray-900 transition-colors"
+                                >
+                                  {item}
+                                </Link>
+                              </li>
+                            ))}
+                          </ul>
+                        </div>
+                      </div>
+                    </div>
+                  </nav>
                 </div>
               </div>
 
-              <a
-                href="/furniture"
+              <Link
+                href="/shop"
                 className="flex items-center text-gray-500 hover:text-[#003B95]"
               >
                 <span className="mr-2">
                   <TbArmchair />
                 </span>{" "}
                 Furniture
-              </a>
+              </Link>
 
-              <a
-                href="/electronics"
+              <Link
+                href="/shop"
                 className="flex items-center text-gray-500 hover:text-[#003B95]"
               >
                 <span className="mr-2">
                   <ImMobile2 />
                 </span>{" "}
                 Electronics
-              </a>
+              </Link>
 
-              <a
-                href="/fashion"
+              <Link
+                href="/shop"
                 className="flex items-center text-gray-500 hover:text-[#003B95]"
               >
                 <span className="mr-2">
                   <PiDress />
                 </span>{" "}
                 Fashion
-              </a>
+              </Link>
 
               <a href="/blog" className="text-gray-500 hover:text-[#003B95]">
                 Blog
               </a>
 
-              <div className="relative group">
+              <div className=" group">
                 <a
                   href="#"
                   className="flex items-center text-gray-500 hover:text-[#003B95]"
@@ -363,25 +477,8 @@ const Navbar = () => {
                     />
                   </svg>
                 </a>
-                <div className="absolute z-10 hidden group-hover:block bg-white border rounded-md mt-2 py-2 w-48">
-                  <a
-                    href="#"
-                    className="block px-4 py-2 text-gray-800 hover:bg-gray-100"
-                  >
-                    Daily Deals
-                  </a>
-                  <a
-                    href="#"
-                    className="block px-4 py-2 text-gray-800 hover:bg-gray-100"
-                  >
-                    Clearance
-                  </a>
-                  <a
-                    href="#"
-                    className="block px-4 py-2 text-gray-800 hover:bg-gray-100"
-                  >
-                    Season Special
-                  </a>
+                <div className="absolute z-10 hidden group-hover:block bg-white border rounded-md py-2 w-full left-0">
+              <DiscountedProduct handleview={handleOpenPopup} />
                 </div>
               </div>
             </div>
@@ -393,7 +490,10 @@ const Navbar = () => {
       <div>
         <div className="flex justify-between items-center text-white p-2 px-4 md:hidden bg-primary fixed top-0 w-full z-[99]">
           <div>
-            <MdOutlineMenu className="h-6 w-6"  onClick={() => setOpenNav(!openNavbar)} />
+            <MdOutlineMenu
+              className="h-6 w-6 transition-all"
+              onClick={() => setOpenNav(!openNavbar)}
+            />
           </div>
           <Link href="/" className="flex items-center space-x-2 mb-4 md:mb-0">
             <Image src={logo} alt="Blonwe Logo" className="w-[100px] h-auto" />
@@ -406,21 +506,238 @@ const Navbar = () => {
           </Link>
         </div>
 
-        {openNavbar && (
-          <div   className={`w-[80%] fixed md:sticky min-h-[100vh] top-0 z-[100] ${
-            openNavbar ? "left-0" : "-left-[100%]"
-          } bg-white md:bg-[#ffffff04]  z-50 p-2 transition-all duration-300`}>
-            <div className="flex justify-between items-center">
-            <Link href="/" className="flex items-center space-x-2 mb-4 md:mb-0">
-            <Image src={logo2} alt="Blonwe Logo" className="w-[100px] h-auto" />
-          </Link>
-          <div>
-          <IoMdClose />
-          </div>
+        <div
+          className={`w-[80%] fixed h-[100vh] overflow-y-auto  top-0 z-[100] transform ${
+            openNavbar ? "translate-x-[0%]" : "-translate-x-[100%]"
+          } bg-white md:bg-[#ffffff04]  z-50 p-2 transition-transform duration-300 ease-in-out`}
+        >
+          <div className="overflow-auto">
+            <div className="flex justify-between items-start h-[50px] px-2">
+              <Link
+                href="/"
+                className="flex items-center space-x-2 mb-4 md:mb-0 filter brightness-50"
+              >
+                <Image
+                  src={logo2}
+                  alt="Blonwe Logo"
+                  className="w-auto h-[33px]"
+                />
+              </Link>
+              <div>
+                <IoMdClose
+                  onClick={() => setOpenNav(!openNavbar)}
+                  className="text-2xl text-gray-500"
+                />
+              </div>
+            </div>
+
+            <div className="flex flex-col">
+              <div className="border-b p-4">
+                <div className="text-sm font-semibold text-gray-500">
+                  MAIN MENU
+                </div>
+                <nav className="mt-2 flex flex-col space-y-2">
+                  <Link href="/" className="text-[15px]">
+                    Home
+                  </Link>
+                  <div>
+                    <button
+                      onClick={toggleShop}
+                      className="flex w-full items-center justify-between text-[15px]"
+                      aria-expanded={shopOpen}
+                    >
+                      Shop
+                      <FiChevronDown
+                        className={`h-4 w-4 transition-transform duration-200 ${
+                          shopOpen ? "rotate-180" : ""
+                        }`}
+                      />
+                    </button>
+                    {shopOpen && (
+                      <div className="ml-4 mt-2 flex flex-col space-y-2">
+                        <Link
+                          href="/shop/lists"
+                          className="text-sm text-gray-500"
+                        >
+                          Shop Lists
+                        </Link>
+                        <Link
+                          href="/shop/detail"
+                          className="text-sm text-gray-500"
+                        >
+                          Product Detail
+                        </Link>
+                        <Link
+                          href="/shop/pages"
+                          className="text-sm text-gray-500"
+                        >
+                          Shop Pages
+                        </Link>
+                        <Link
+                          href="/shop/layouts"
+                          className="text-sm text-gray-500"
+                        >
+                          Shop Layouts
+                        </Link>
+                      </div>
+                    )}
+                  </div>
+                  {[
+                    {
+                      id: "electronics",
+                      name: "Electronics",
+                      icon: <ImMobile2 className="h-5 w-5" />,
+                    },
+                    {
+                      id: "fashion",
+                      name: "Fashion",
+                      icon: <PiDress className="h-5 w-5" />,
+                    },
+                    {
+                      id: "furniture",
+                      name: "Furniture",
+                      icon: <TbArmchair className="h-5 w-5" />,
+                    },
+                  ].map((menu, index) => (
+                    <Link
+                      key={index}
+                      href="#"
+                      className="flex items-center gap-3 py-2 hover:bg-[#004798] hover:text-white transition-colors text-[14px]"
+                    >
+                      <span className="text-gray-500">{menu.icon}</span>
+                      <span>{menu.name}</span>
+                    </Link>
+                  ))}
+                  <Link href="/blog" className="text-[15px]">
+                    Blog
+                  </Link>
+                </nav>
+              </div>
+              <div className="p-4">
+                <div className="text-xs font-semibold text-gray-500">
+                  BROWSE CATEGORIES
+                </div>
+                <nav className="py-2  relative text-gray-500">
+                  {categories.map((category) => (
+                    <Link
+                      key={category.id}
+                      href="#"
+                      className="flex items-center gap-3 py-2 hover:bg-[#004798] hover:text-white transition-colors text-[14px]"
+                    >
+                      <span className="text-primary">{category.icon}</span>
+                      <span>{category.name}</span>
+                    </Link>
+                  ))}
+                </nav>
+              </div>
+
+              {/* Shopper Helps */}
+              <div className="p-4">
+                <h2 className="text-[15px] font-semibold text-muted-foreground mb-3 text-gray-500">
+                  SHOPPER HELPS
+                </h2>
+                <ul className="space-y-2">
+                  <li>
+                    <Link
+                      href="/wishlist"
+                      className="text-sm hover:text-primary flex items-center gap-2 py-1"
+                    >
+                      <BsHeart className="w-4 h-4" />
+                      Wishlist
+                    </Link>
+                  </li>
+                  <li>
+                    <Link
+                      href="/myaccount"
+                      className="text-sm hover:text-primary flex items-center gap-2 py-1"
+                    >
+                      <CiUser className="w-4 h-4" />
+                      My Account
+                    </Link>
+                  </li>
+                  <li>
+                    <Link
+                      href="/contact"
+                      className="text-sm hover:text-primary flex items-center gap-2 py-1"
+                    >
+                      <FiMessageSquare className="w-4 h-4" />
+                      Contact
+                    </Link>
+                  </li>
+                </ul>
+              </div>
+
+              {/* Contact Details */}
+              <div className="p-4">
+                <h2 className="text-[15px] font-semibold text-gray-500 mb-3">
+                  CONTACT DETAILS
+                </h2>
+                <div className="space-y-3">
+                  <div>
+                    <div className="flex items-center gap-2 text-[15px]">
+                      <BsPhone className="w-5 h-5" />
+                      <a
+                        href="tel:555-555-5555"
+                        className="hover:text-primary font-semibold"
+                      >
+                        555-555-5555
+                      </a>
+                    </div>
+                    <div className="text-[10px] text-gray-500">
+                      You can call anytime from 9 am to 6 pm.
+                    </div>
+                  </div>
+                  <div>
+                    <div className="flex items-center gap-2 text-[15px]">
+                      <BsMailbox className="w-5 h-5" />
+                      <a
+                        href="mailto:example@example.com"
+                        className="hover:text-primary font-semibold"
+                      >
+                        example@example.com
+                      </a>
+                    </div>
+                    <div className="text-[10px] text-gray-500">
+                      We will quickly answer you in the short time.
+                    </div>
+                  </div>
+                </div>
+              </div>
+
+              {/* Footer */}
+              <div className="text-sm text-gray-500 pt-4 border-t">
+                <p>
+                  Copyright ©2024{" "}
+                  <Link href="/" className="hover:text-primary text-gray-500">
+                    iHome WordPress Theme
+                  </Link>
+                  . All right reserved. Powered by{" "}
+                  <Link href="/" className="hover:text-primary text-gray-500">
+                    iUTheme
+                  </Link>
+                  .
+                </p>
+              </div>
             </div>
           </div>
-        )}
+        </div>
       </div>
+      {isPopupVisible && (
+        <div className="fixed inset-0 z-50 flex items-center justify-center bg-black bg-opacity-50">
+          <div className="relative w-full max-w-4xl rounded-lg shadow-lg">
+            {/* Close Button */}
+            <button
+              className="absolute top-4 right-4 text-gray-500 hover:text-gray-700"
+              onClick={handleClosePopup}
+            >
+              <span className="text-2xl md:text-4xl font-bold">&times;</span>
+            </button>
+
+            {/* Product Detail Component */}
+            <ProductDetail />
+          </div>
+        </div>
+      )}
     </div>
   );
 };

@@ -36,6 +36,7 @@ import ProductDetail from "./components/ProductDetail";
 import LatestProduct from "./components/LatestProduct";
 import SubNewsLatter from "./components/SubNewsLatter";
 import Features from "./components/Features";
+import { FaChevronLeft, FaChevronRight } from "react-icons/fa6";
 
 const services = [
   {
@@ -76,11 +77,41 @@ export default function Home() {
   const handleOpenPopup = () => setIsPopupVisible(true);
   const handleClosePopup = () => setIsPopupVisible(false);
 
-  const [sliderRef] = useKeenSlider({
+  const [sliderRef, instanceRef] = useKeenSlider({
     loop: true,
     slidesPerView: 1,
     autoplay: true,
   });
+  const handlePrev = () => {
+    if (instanceRef.current) {
+      instanceRef.current.prev();
+    }
+  };
+
+  const handleNext = () => {
+    if (instanceRef.current) {
+      instanceRef.current.next();
+    }
+  };
+
+  const CustomPrevArrow = ({ onClick }) => (
+    <button
+    className="absolute top-1/2 left-4 transform -translate-y-1/2 bg-black/10 hover:bg-black/50 transition-all text-white px-2 py-4 rounded-md z-10"
+    onClick={onClick}
+  >
+  <FaChevronLeft />
+  </button>
+  );
+  
+  // Custom Right Arrow
+  const CustomNextArrow = ({ onClick }) => (
+    <button
+    className="absolute top-1/2 right-4 transform -translate-y-1/2 bg-black/10 hover:bg-black/50 transition-all text-white px-2 py-4 rounded-md"
+    onClick={onClick}
+  >
+  <FaChevronRight />
+  </button>
+  );
 
   const settings = {
     infinite: true,
@@ -104,6 +135,8 @@ export default function Home() {
         },
       },
     ],
+    prevArrow: <CustomPrevArrow />,
+    nextArrow: <CustomNextArrow />,
   };
 
   return (
@@ -128,9 +161,9 @@ export default function Home() {
       </div>
 
       {/* Slider Section */}
-      <div className="p-2">
+      <div className="p-2 relative overflow-hidden">
         <div
-          className="keen-slider max-w-7xl mx-auto rounded-lg overflow-hidden"
+          className="keen-slider max-w-7xl mx-auto rounded-lg overflow-hidden relative"
           ref={sliderRef}
         >
           {sliderImages.map((image, index) => (
@@ -142,27 +175,41 @@ export default function Home() {
               />
             </div>
           ))}
+          
+        <button
+        className="absolute top-1/2 left-4 transform -translate-y-1/2 bg-black/10 hover:bg-black/50 transition-all text-white px-2 py-4 rounded-md"
+        onClick={handlePrev}
+      >
+      <FaChevronLeft />
+      </button>
+      <button
+        className="absolute top-1/2 right-4 transform -translate-y-1/2 bg-black/10 hover:bg-black/50 transition-all  text-white px-2 py-4 rounded-md"
+        onClick={handleNext}
+      >
+       <FaChevronRight />
+      </button>
         </div>
       </div>
       <div className="p-2 max-w-7xl mx-auto rounded-lg overflow-hidden">
-        <Slider {...settings} className="grid grid-cols-6">
-          {sliderCat.map((image, index) => (
-            <div
-              key={index}
-              className=" flex justify-center overflow-hidden group"
-            >
-              <Image
-                src={image.img}
-                alt={`Slide ${index + 1}`}
-                className="object-contain rounded-md h-[100px] w-[100px]  transition-all md:h-[150px] md:w-[150px] bg-[#eceef0] mx-auto"
-              />
-              <p className="text-center p-2 font-[500] text-gray-500 transition-all group-hover:text-blue-500">
-                {image.name}
-              </p>
-            </div>
-          ))}
-        </Slider>
-      </div>
+      <Slider {...settings} className="grid grid-cols-6">
+        {sliderCat.map((image, index) => (
+          <Link 
+          href='/shop'
+            key={index}
+            className="flex justify-center overflow-hidden group"
+          >
+            <Image
+              src={image.img}
+              alt={`Slide ${index + 1}`}
+              className="object-contain rounded-md h-[100px] w-[100px] transition-all md:h-[150px] md:w-[150px] bg-[#eceef0] mx-auto"
+            />
+            <p className="text-center p-2 font-[500] text-gray-500 transition-all group-hover:text-primary">
+              {image.name}
+            </p>
+          </Link>
+        ))}
+      </Slider>
+    </div>
 
       <div className="grid grid-cols-1 md:grid-cols-3 grid-rows-1 gap-4 max-w-7xl mx-auto p-2">
         <div className="rounded-md overflow-hidden">

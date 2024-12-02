@@ -40,7 +40,7 @@ export default function RootLayout({ children }) {
           }}
         >
           <Navbar />
-          <main>{children}</main>
+          <main className="sm:mt-[50px] md:mt-0">{children}</main>
           <Footer />
           <MobileFooter  />
         </body>

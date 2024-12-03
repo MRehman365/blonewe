@@ -15,6 +15,7 @@ import prodcut7 from "../assets/image-1-16-450x450.png";
 import prodcut8 from "../assets/image-1-17-450x450.png";
 import prodcut9 from "../assets/image-1-7-450x450.png";
 import prodcut10 from "../assets/image-1-17-450x450.png";
+import { useTheme } from "../layout";
 
 const products = [
   {
@@ -121,6 +122,7 @@ const products = [
   },
 ];
 const DiscountedProduct = ({ handleview }) => {
+  const { theme } = useTheme()
     const initialTime = 1 * 24 * 60 * 60 + 14 * 60 * 60 + 20 * 60 + 10;
 
     // const [timeRemaining, setTimeRemaining] = useState(initialTime);
@@ -175,7 +177,7 @@ const DiscountedProduct = ({ handleview }) => {
     ],
   };
   return (
-    <div className="max-w-7xl mx-auto p-2 overflow-hidden">
+    <div className="max-w-7xl mx-auto p-2 overflow-hidden" >
       <div className="flex justify-between py-2">
         <div className="flex flex-col md:flex-row gap-2 items-center">
           <p className="text-base md:text-lg">The best discounts this week</p>

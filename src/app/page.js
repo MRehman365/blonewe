@@ -301,7 +301,7 @@ export default function Home() {
             </button>
 
             {/* Product Detail Component */}
-            <ProductDetail />
+            <ProductDetail  handleview={handleOpenPopup} />
           </div>
         </div>
       )}

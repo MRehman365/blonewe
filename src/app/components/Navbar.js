@@ -105,6 +105,7 @@ const Navbar = () => {
   const [isPopupVisible, setIsPopupVisible] = useState(false);
   const { theme, toggleTheme } = useTheme();
 
+
   const [shopOpen, setShopOpen] = useState(false);
   const toggleShop = () => setShopOpen(!shopOpen);
 
@@ -115,6 +116,7 @@ const Navbar = () => {
 
     return () => clearInterval(interval);
   }, []);
+  
 
   const days = Math.floor(timeRemaining / (24 * 60 * 60));
   const hours = Math.floor((timeRemaining % (24 * 60 * 60)) / (60 * 60));
@@ -150,6 +152,7 @@ const Navbar = () => {
       setFilteredResults([]);
     }
   };
+  
 
   return (
     <div className="">
@@ -246,9 +249,8 @@ const Navbar = () => {
               key={index}
               className="px-4 py-2 text-sm text-gray-700 hover:bg-gray-100 cursor-pointer"
               onClick={() => {
-                alert(`Selected: ${result}`); // Handle click on a search result
-                setQuery(result); // Update input field with selected result
-                setFilteredResults([]); // Clear results
+                setQuery(result);
+                setFilteredResults([]);
               }}
             >
               {result}
@@ -328,15 +330,19 @@ const Navbar = () => {
                       ? "opacity-100 translate-y-0 visible"
                       : "opacity-0 -translate-y-2 invisible"
                   }`}
+                  style={{
+        backgroundColor: theme === "light" ? "rgba(255, 255, 255, 1)" : "rgba(26, 32, 44, 1)",
+        color: theme === "light" ? "#000" : "#fff",
+      }}
                 >
                   <nav className="py-2  relative text-gray-500">
                     {categories.map((category) => (
                       <Link
                         key={category.id}
                         href={`/category/${category.id}`}
-                        className="flex items-center gap-3 px-4 py-2 hover:bg-[#004798] hover:text-white transition-colors text-[14px]"
+                        className="flex items-center gap-3 group px-4 py-2 hover:bg-[#004798] hover:text-white transition-colors text-[14px]"
                       >
-                        <span className="text-primary">{category.icon}</span>
+                        <span className="text-primary group-hover:text-white">{category.icon}</span>
                         <span>{category.name}</span>
                       </Link>
                     ))}
@@ -369,9 +375,12 @@ const Navbar = () => {
                     />
                   </svg>
                 </Link>
-                <div className="absolute left-1/2 transform -translate-x-1/2 z-10 hidden group-hover:block bg-white border rounded-md  py-2 w-[80%]">
+                <div className="absolute left-1/2 transform -translate-x-1/2 z-10 hidden group-hover:block border rounded-md  py-2 w-[80%]"  style={{
+      backgroundColor: theme === "light" ? "rgba(255, 255, 255, 1)" : "#fff",
+      color: theme === "light" ? "#000" : "#fff",
+    }}>
                   <nav
-                    className="w-full p-6 bg-white"
+                    className="w-full p-6"
                     aria-label="Shop navigation"
                   >
                     <div className="max-w-5xl mx-auto">
@@ -542,7 +551,10 @@ const Navbar = () => {
                     />
                   </svg>
                 </a>
-                <div className="absolute z-10 hidden group-hover:block bg-white border rounded-md py-2 w-full left-0">
+                <div className="absolute z-10 hidden group-hover:block rounded-md py-2 w-full left-0"  style={{
+      backgroundColor: theme === "light" ? "rgba(255, 255, 255, 1)" : "rgba(26, 32, 44, 1)",
+      color: theme === "light" ? "#000" : "#fff",
+    }}>
               <DiscountedProduct handleview={handleOpenPopup} />
                 </div>
               </div>

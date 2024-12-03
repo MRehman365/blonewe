@@ -1,6 +1,6 @@
 "use client";
 
-import React, { createContext, useState, useContext } from "react";
+import React, { createContext, useState, useContext, useEffect } from "react";
 import localFont from "next/font/local";
 import "./globals.css"; // Ensure this file contains global styles
 import Navbar from "./components/Navbar"; // Adjust path if necessary
@@ -25,8 +25,20 @@ const geistMono = localFont({
 export default function RootLayout({ children }) {
   const [theme, setTheme] = useState("light");
 
+  // Retrieve theme from localStorage on component mount
+  useEffect(() => {
+    const storedTheme = localStorage.getItem("theme");
+    if (storedTheme) {
+      setTheme(storedTheme);
+    }
+  }, []);
+
   const toggleTheme = () => {
-    setTheme((prevTheme) => (prevTheme === "light" ? "dark" : "light"));
+    setTheme((prevTheme) => {
+      const newTheme = prevTheme === "light" ? "dark" : "light";
+      localStorage.setItem("theme", newTheme); // Save theme to localStorage
+      return newTheme;
+    });
   };
 
   return (
@@ -35,14 +47,14 @@ export default function RootLayout({ children }) {
         <body
           className={`${geistSans.variable} ${geistMono.variable} antialiased overflow-x-hidden`}
           style={{
-            backgroundColor: theme === "light" ? "#fff" : "#1a202c", // Dynamic background color
-            color: theme === "light" ? "#000" : "#fff", // Dynamic text color
+            backgroundColor: theme === "light" ? "#fff" : "#1a202c", 
+            color: theme === "light" ? "#000" : "#fff", 
           }}
         >
           <Navbar />
           <main className="sm:mt-[50px] md:mt-0">{children}</main>
           <Footer />
-          <MobileFooter  />
+          <MobileFooter />
         </body>
       </ThemeContext.Provider>
     </html>

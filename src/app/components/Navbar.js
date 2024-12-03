@@ -36,6 +36,8 @@ import { IoMdClose } from "react-icons/io";
 import DiscountedProduct from "./DiscountedProduct";
 import ProductDetail from "./ProductDetail";
 
+import img1 from "../assets/image-1-1-1-450x450.png";
+
 const categories = [
   {
     id: "electronics",
@@ -80,6 +82,21 @@ const categories = [
   { id: "sport4", name: "Best Selling" },
 ];
 
+const products = [
+  {
+    id: "electrolux",
+    name: "ELECTROLUX EW6S226SUI",
+    price: 190.0,
+    image: img1,
+  },
+  {
+    id: "ecobee",
+    name: "ecobee 3 Lite Smart Thermostat 2.0, No Hub Required",
+    price: 130.0,
+    image: img1,
+  },
+];
+
 const Navbar = () => {
   const initialTime = 1 * 24 * 60 * 60 + 14 * 60 * 60 + 20 * 60 + 10;
   const [isOpen, setIsOpen] = useState(false);
@@ -106,6 +123,33 @@ const Navbar = () => {
 
   const handleOpenPopup = () => setIsPopupVisible(true);
   const handleClosePopup = () => setIsPopupVisible(false);
+  const products = [
+    "Apple iPhone",
+    "Samsung Galaxy",
+    "Google Pixel",
+    "OnePlus Nord",
+    "Sony Xperia",
+    "LG Velvet",
+    "Nokia Lumia",
+    "Huawei P40",
+  ];
+
+  const [query, setQuery] = useState(""); 
+  const [filteredResults, setFilteredResults] = useState([]); 
+
+  const handleSearch = (e) => {
+    const value = e.target.value;
+    setQuery(value);
+
+    if (value) {
+      const results = products.filter((product) =>
+        product.toLowerCase().includes(value.toLowerCase())
+      );
+      setFilteredResults(results);
+    } else {
+      setFilteredResults([]);
+    }
+  };
 
   return (
     <div className="">
@@ -169,29 +213,50 @@ const Navbar = () => {
             </Link>
 
             {/* Search Bar */}
-            <div className="flex-1 max-w-4xl mx-0 md:mx-8 w-full mb-4 md:mb-0">
-              <div className="relative">
-                <input
-                  type="search"
-                  placeholder="Search for products..."
-                  className="w-full bg-white text-black focus:ring-1 focus:ring-primary outline-none pl-4 pr-10 py-2 rounded-md"
-                />
-                <svg
-                  xmlns="http://www.w3.org/2000/svg"
-                  className="absolute right-3 top-2.5 h-5 w-5 text-gray-500"
-                  fill="none"
-                  viewBox="0 0 24 24"
-                  stroke="currentColor"
-                >
-                  <path
-                    strokeLinecap="round"
-                    strokeLinejoin="round"
-                    strokeWidth={2}
-                    d="M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0z"
-                  />
-                </svg>
-              </div>
-            </div>
+            <div className="flex-1 max-w-4xl mx-0 md:mx-8 w-full mb-4 md:mb-0 relative">
+      <div className="relative">
+        <input
+          type="search"
+          placeholder="Search for products..."
+          className="w-full bg-white text-black focus:ring-1 focus:ring-primary outline-none pl-4 pr-10 py-2 rounded-md"
+          value={query}
+          onChange={handleSearch}
+        />
+        <svg
+          xmlns="http://www.w3.org/2000/svg"
+          className="absolute right-3 top-2.5 h-5 w-5 text-gray-500"
+          fill="none"
+          viewBox="0 0 24 24"
+          stroke="currentColor"
+        >
+          <path
+            strokeLinecap="round"
+            strokeLinejoin="round"
+            strokeWidth={2}
+            d="M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0z"
+          />
+        </svg>
+      </div>
+
+      {/* Search Results */}
+      {filteredResults.length > 0 && (
+        <ul className="absolute bg-white shadow-lg rounded-md w-full mt-1 z-10 max-h-60 overflow-y-auto">
+          {filteredResults.map((result, index) => (
+            <li
+              key={index}
+              className="px-4 py-2 text-sm text-gray-700 hover:bg-gray-100 cursor-pointer"
+              onClick={() => {
+                alert(`Selected: ${result}`); // Handle click on a search result
+                setQuery(result); // Update input field with selected result
+                setFilteredResults([]); // Clear results
+              }}
+            >
+              {result}
+            </li>
+          ))}
+        </ul>
+      )}
+    </div>
 
             {/* Account Actions */}
             <div className="flex items-center space-x-6">
@@ -540,48 +605,9 @@ const Navbar = () => {
                   <Link href="/" className="text-[15px]">
                     Home
                   </Link>
-                  <div>
-                    <button
-                      onClick={toggleShop}
-                      className="flex w-full items-center justify-between text-[15px]"
-                      aria-expanded={shopOpen}
-                    >
-                      Shop
-                      <FiChevronDown
-                        className={`h-4 w-4 transition-transform duration-200 ${
-                          shopOpen ? "rotate-180" : ""
-                        }`}
-                      />
-                    </button>
-                    {shopOpen && (
-                      <div className="ml-4 mt-2 flex flex-col space-y-2">
-                        <Link
-                          href="/shop/lists"
-                          className="text-sm text-gray-500"
-                        >
-                          Shop Lists
-                        </Link>
-                        <Link
-                          href="/shop/detail"
-                          className="text-sm text-gray-500"
-                        >
-                          Product Detail
-                        </Link>
-                        <Link
-                          href="/shop/pages"
-                          className="text-sm text-gray-500"
-                        >
-                          Shop Pages
-                        </Link>
-                        <Link
-                          href="/shop/layouts"
-                          className="text-sm text-gray-500"
-                        >
-                          Shop Layouts
-                        </Link>
-                      </div>
-                    )}
-                  </div>
+                  <Link href='/shop'  className="text-[15px]">
+                    Shop
+                  </Link>
                   {[
                     {
                       id: "electronics",
@@ -601,7 +627,7 @@ const Navbar = () => {
                   ].map((menu, index) => (
                     <Link
                       key={index}
-                      href="#"
+                      href='/shop'
                       className="flex items-center gap-3 py-2 hover:bg-[#004798] hover:text-white transition-colors text-[14px]"
                     >
                       <span className="text-gray-500">{menu.icon}</span>
@@ -621,7 +647,7 @@ const Navbar = () => {
                   {categories.map((category) => (
                     <Link
                       key={category.id}
-                      href="#"
+                      href="/shop"
                       className="flex items-center gap-3 py-2 hover:bg-[#004798] hover:text-white transition-colors text-[14px]"
                     >
                       <span className="text-primary">{category.icon}</span>
@@ -743,3 +769,4 @@ const Navbar = () => {
 };
 
 export default Navbar;
+

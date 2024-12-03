@@ -15,6 +15,7 @@ import prodcut7 from "../assets/image-1-16-450x450.png";
 import prodcut8 from "../assets/image-1-17-450x450.png";
 import prodcut9 from "../assets/image-1-7-450x450.png";
 import prodcut10 from "../assets/image-1-17-450x450.png";
+import Link from "next/link";
 
 const products = [
   {
@@ -195,12 +196,14 @@ const FeauredProduct = ({ handleview }) => {
             <div key={i}>
               <div className="group relative overflow-hidden w-full transition-all duration-300 h-full flex flex-col border border-gray-300 mx-auto">
                 <div className="relative aspect-square">
+                <Link href='/product'>
                   <Image
                     src={product.image}
                     alt={product.name}
                     fill
                     className="object-cover h-[400px] w-auto overflow-hidden transition-transform duration-300 group-hover:scale-105"
                   />
+                  </Link>
                   {product.discount > 0 && (
                     <div className="absolute left-2 bottom-2 bg-red-500 text-white text-xs font-bold px-2 py-1 rounded">
                       {product.discount}%
@@ -266,12 +269,14 @@ const FeauredProduct = ({ handleview }) => {
             <div key={i}>
               <div className="group relative overflow-hidden w-full transition-all duration-300 h-full flex flex-col border border-gray-300 mx-auto">
                 <div className="relative aspect-square">
+                <Link href='/product'>
                   <Image
                     src={product.image}
                     alt={product.name}
                     fill
                     className="object-cover h-[400px] w-auto overflow-hidden transition-transform duration-300 group-hover:scale-105"
                   />
+                  </Link>
                   {product.discount > 0 && (
                     <div className="absolute left-2 bottom-2 bg-red-500 text-white text-xs font-bold px-2 py-1 rounded">
                       {product.discount}%
@@ -337,12 +342,14 @@ const FeauredProduct = ({ handleview }) => {
             <div key={i}>
               <div className="group relative overflow-hidden w-full transition-all duration-300 h-full flex flex-col border border-gray-300 mx-auto">
                 <div className="relative aspect-square">
+                <Link href='/product'>
                   <Image
                     src={product.image}
                     alt={product.name}
                     fill
                     className="object-cover h-[400px] w-auto overflow-hidden transition-transform duration-300 group-hover:scale-105"
                   />
+                  </Link>
                   {product.discount > 0 && (
                     <div className="absolute left-2 bottom-2 bg-red-500 text-white text-xs font-bold px-2 py-1 rounded">
                       {product.discount}%

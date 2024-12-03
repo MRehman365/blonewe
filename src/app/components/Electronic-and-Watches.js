@@ -14,6 +14,7 @@ import prodcut7 from '../assets/image-1-16-450x450.png'
 import prodcut8 from '../assets/image-1-17-450x450.png'
 import prodcut9 from '../assets/image-1-7-450x450.png'
 import prodcut10 from '../assets/image-1-17-450x450.png'
+import Link from "next/link"
 
 export default function Electronics({handleview}) {
   const products = [
@@ -152,12 +153,14 @@ export default function Electronics({handleview}) {
                   onMouseEnter={(e) => e.currentTarget.classList.add('hovered')}
                   onMouseLeave={(e) => e.currentTarget.classList.remove('hovered')}
                 >
+                <Link href='/product'>
                   <Image
                     src={product.image}
                     alt={product.name}
                     fill
                     className="object-cover transition-transform duration-300 group-hover:scale-105"
                   />
+                  </Link>
                   {product.discount > 0 && (
                     <div className="absolute left-2 bottom-2 bg-red-500 text-white text-xs font-bold px-2 py-1 rounded">
                       {product.discount}%

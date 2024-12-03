@@ -6,6 +6,7 @@ import Image from "next/image";
 import { useState } from "react";
 import img1 from "../assets/image-1-1-1-450x450.png";
 import { MdMenu } from "react-icons/md";
+import Link from "next/link";
 
 export default function ShoppingCart() {
   const products = [
@@ -242,9 +243,11 @@ export default function ShoppingCart() {
               </div>
 
               {/* Checkout Button */}
-              <button className="w-full py-3 bg-[#004b93] text-white rounded hover:bg-[#003d7a] transition-colors">
+              <Link href='/checkout' >
+              <button className="w-full px-2 py-3 bg-[#004b93] text-white rounded hover:bg-[#003d7a] transition-colors">
                 Proceed to checkout
               </button>
+              </Link>
             </div>
           </div>
         </div>

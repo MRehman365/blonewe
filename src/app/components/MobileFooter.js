@@ -11,14 +11,14 @@ const MobileFooter = () => {
     <div className="fixed bottom-0 left-0 right-0 border-t md:hidden bg-white">
     <nav className="flex items-center justify-between px-4 py-2">
       <Link
-        href="/" 
+        href="/shop" 
         className="flex flex-col items-center gap-1"
       >
         <IoStorefrontOutline className="h-5 w-5" />
         <span className="text-xs">Store</span>
       </Link>
       <Link 
-        href="/search" 
+        href="/Search" 
         className="flex flex-col items-center gap-1"
       >
         <IoSearchOutline className="h-5 w-5" />

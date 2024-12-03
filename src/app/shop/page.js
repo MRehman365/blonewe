@@ -150,6 +150,7 @@ export default function ProductListing() {
   const [sortValue, setSortValue] = useState("Sort by latest");
   const [showValue, setShowValue] = useState("20 items");
   const [isSidebarVisible, setIsSidebarVisible] = useState(false);
+  const [viewMode, setViewMode] = useState("grid");
 
   const handleOpenPopup = () => setIsPopupVisible(true);
   const handleClosePopup = () => setIsPopupVisible(false);
@@ -159,7 +160,10 @@ export default function ProductListing() {
   // Pagination logic
   const indexOfLastProduct = currentPage * productsPerPage;
   const indexOfFirstProduct = indexOfLastProduct - productsPerPage;
-  const currentProducts = products.slice(indexOfFirstProduct, indexOfLastProduct);
+  const currentProducts = products.slice(
+    indexOfFirstProduct,
+    indexOfLastProduct
+  );
 
   const totalPages = Math.ceil(products.length / productsPerPage);
 
@@ -273,35 +277,43 @@ export default function ProductListing() {
 
               {showOpen && (
                 <div className="absolute z-10 w-full mt-1  border rounded-md shadow-lg">
-                  {["12 items", "20 items", "30 items"].map(
-                    (option) => (
-                      <button
-                        key={option}
-                        className="w-full px-3 py-1.5 text-left text-sm "
-                        onClick={() => {
-                          setShowValue(option);
-                          setShowOpen(false);
-                        }}
-                      >
-                        {option}
-                      </button>
-                    )
-                  )}
+                  {["12 items", "20 items", "30 items"].map((option) => (
+                    <button
+                      key={option}
+                      className="w-full px-3 py-1.5 text-left text-sm "
+                      onClick={() => {
+                        setShowValue(option);
+                        setShowOpen(false);
+                      }}
+                    >
+                      {option}
+                    </button>
+                  ))}
                 </div>
               )}
             </div>
           </div>
 
           <div className="md:flex gap-1 ml-4 hidden">
-            <button className="p-1.5 text-gray-500 hover:bg-gray-100 rounded-md">
-              <BsGrid className="h-4 w-4" />
-              <span className="sr-only">Grid view</span>
-            </button>
-            <button className="p-1.5 text-gray-500 hover:bg-gray-100 rounded-md">
-              <BsListUl className="h-4 w-4" />
-              <span className="sr-only">List view</span>
-            </button>
-          </div>
+        <button
+          className={`p-1.5 text-gray-500 hover:bg-gray-100 rounded-md ${
+            viewMode === "grid" ? "bg-gray-200" : ""
+          }`}
+          onClick={() => setViewMode("grid")}
+        >
+          <BsGrid className="h-4 w-4" />
+          <span className="sr-only">Grid view</span>
+        </button>
+        <button
+          className={`p-1.5 text-gray-500 hover:bg-gray-100 rounded-md ${
+            viewMode === "list" ? "bg-gray-200" : ""
+          }`}
+          onClick={() => setViewMode("list")}
+        >
+          <BsListUl className="h-4 w-4" />
+          <span className="sr-only">List view</span>
+        </button>
+      </div>
         </div>
       </div>
       <div className=" py-4 flex flex-col md:flex-row gap-8 ">
@@ -314,7 +326,9 @@ export default function ProductListing() {
           <div className="space-y-6">
             {/* Categories */}
             <div className="flex justify-end md:hidden">
-            <IoMdClose onClick={() => setIsSidebarVisible(!isSidebarVisible)} />
+              <IoMdClose
+                onClick={() => setIsSidebarVisible(!isSidebarVisible)}
+              />
             </div>
             <div>
               <h2 className="text-lg font-semibold mb-4">Product Categories</h2>
@@ -421,37 +435,48 @@ export default function ProductListing() {
 
         {/* Product List */}
         <div className="flex-1">
-      <div className="flex items-center gap-2 flex-wrap mb-6 p-2">
-        <button
-          onClick={clearFilters}
-          className="px-4 py-2 border rounded-md hover:bg-gray-50"
-        >
-          Clear Filters
-        </button>
-        {selectedCategories.map((category) => (
-          <span
-            key={category}
-            className="px-3 py-1 bg-[#004798] text-white rounded-full"
-          >
-            {category}
+          <div className="flex items-center gap-2 flex-wrap mb-6 p-2">
             <button
-              onClick={() => toggleCategory(category)}
-              className="ml-2 text-red-500"
+              onClick={clearFilters}
+              className="px-4 py-2 border rounded-md hover:bg-gray-50"
             >
-              ×
+              Clear Filters
             </button>
-          </span>
-        ))}
-      </div>
+            {selectedCategories.map((category) => (
+              <span
+                key={category}
+                className="px-3 py-1 bg-[#004798] text-white rounded-full"
+              >
+                {category}
+                <button
+                  onClick={() => toggleCategory(category)}
+                  className="ml-2 text-red-500"
+                >
+                  ×
+                </button>
+              </span>
+            ))}
+          </div>
 
-      <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 xl:grid-cols-4 gap-1 p-2">
+          <div
+        className={`grid gap-1 p-2 ${
+          viewMode === "grid"
+            ? "grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 xl:grid-cols-4"
+            : "grid-cols-1"
+        }`}
+      >
         {currentProducts.map((product) => (
           <div
             key={product.id}
-            className="group relative overflow-hidden w-full border border-gray-300 flex flex-col"
+            className={`group relative overflow-hidden w-full border border-gray-300 flex ${
+              viewMode === "grid" ? "flex-col" : "flex-row h-[200px]"
+            }`}
           >
+            {/* Product Image */}
             <div
-              className="relative aspect-square"
+              className={`relative ${
+                viewMode === "grid" ? "aspect-square" : "w-1/2"
+              }`}
               onMouseEnter={(e) => e.currentTarget.classList.add("hovered")}
               onMouseLeave={(e) =>
                 e.currentTarget.classList.remove("hovered")
@@ -461,7 +486,9 @@ export default function ProductListing() {
                 src={product.image}
                 alt={product.name}
                 fill
-                className="object-cover transition-transform duration-300 group-hover:scale-105"
+                className={`${
+                  viewMode === "grid" ? "object-cover" : "object-contain"
+                }  transition-transform duration-300 group-hover:scale-105`}
               />
               {product.discount > 0 && (
                 <div className="absolute left-2 bottom-2 bg-red-500 text-white text-xs font-bold px-2 py-1 rounded">
@@ -469,18 +496,20 @@ export default function ProductListing() {
                 </div>
               )}
               <div className="absolute right-2 top-2 flex flex-col gap-2 opacity-0 group-hover:opacity-100">
-                <button
-                  className="p-2 bg-white rounded-full shadow-md hover:bg-gray-100"
-                  onClick={() => console.log("Popup opened")}
-                >
-                  <MdOutlineZoomOutMap className="h-4 w-4 text-gray-600" />
-                </button>
-                <button className="p-2 bg-white rounded-full shadow-md hover:bg-gray-100">
-                  <FaRegHeart className="h-4 w-4 text-gray-600" />
-                </button>
-              </div>
+                    <button
+                      className="p-2 bg-white rounded-full shadow-md hover:bg-gray-100"
+                      onClick={() => console.log("Popup opened")}
+                    >
+                      <MdOutlineZoomOutMap className="h-4 w-4 text-gray-600" />
+                    </button>
+                    <button className="p-2 bg-white rounded-full shadow-md hover:bg-gray-100">
+                      <FaRegHeart className="h-4 w-4 text-gray-600" />
+                    </button>
+                  </div>
             </div>
-            <div className="p-4 flex-grow flex flex-col">
+
+            {/* Product Details */}
+            <div className={`p-4 flex-grow flex flex-col`}>
               <div className="flex gap-2 items-center">
                 <div className="text-sm text-gray-500 line-through">
                   ₹{product.price.toFixed(2)}
@@ -492,8 +521,14 @@ export default function ProductListing() {
               <h3 className="text-sm font-medium mt-2 line-clamp-2">
                 {product.name}
               </h3>
-              <div className="h-[25px] overflow-hidden relative">
-                <div className="absolute flex flex-col gap-2 bottom-0 group-hover:-bottom-7 transform transition-all duration-500">
+              <div
+                className={`${
+                  viewMode === "grid" ? "h-[25px]" : "mt-2 h-[25px]"
+                } overflow-hidden relative`}
+              >
+                <div
+                  className={`absolute flex flex-col gap-2 bottom-0 group-hover:-bottom-7 transform transition-all duration-500`}
+                >
                   <div className="text-[12px]">
                     <span className="text-gray-400">Store:</span> Groci
                   </div>
@@ -515,37 +550,37 @@ export default function ProductListing() {
         ))}
       </div>
 
-      {/* Pagination */}
-      <div className="flex justify-center items-center mt-6 space-x-2">
-        <button
-          disabled={currentPage === 1}
-          onClick={() => setCurrentPage((prev) => prev - 1)}
-          className="px-4 py-2 border rounded-md hover:bg-gray-50 disabled:opacity-50"
-        >
-          Previous
-        </button>
-        {Array.from({ length: totalPages }, (_, index) => (
-          <button
-            key={index}
-            onClick={() => setCurrentPage(index + 1)}
-            className={`px-3 py-2 border rounded-md ${
-              currentPage === index + 1
-                ? "bg-[#004798] text-white"
-                : "hover:bg-gray-50"
-            }`}
-          >
-            {index + 1}
-          </button>
-        ))}
-        <button
-          disabled={currentPage === totalPages}
-          onClick={() => setCurrentPage((prev) => prev + 1)}
-          className="px-4 py-2 border rounded-md hover:bg-gray-50 disabled:opacity-50"
-        >
-          Next
-        </button>
-      </div>
-    </div>
+          {/* Pagination */}
+          <div className="flex justify-center items-center mt-6 space-x-2">
+            <button
+              disabled={currentPage === 1}
+              onClick={() => setCurrentPage((prev) => prev - 1)}
+              className="px-4 py-2 border rounded-md hover:bg-gray-50 disabled:opacity-50"
+            >
+              Previous
+            </button>
+            {Array.from({ length: totalPages }, (_, index) => (
+              <button
+                key={index}
+                onClick={() => setCurrentPage(index + 1)}
+                className={`px-3 py-2 border rounded-md ${
+                  currentPage === index + 1
+                    ? "bg-[#004798] text-white"
+                    : "hover:bg-gray-50"
+                }`}
+              >
+                {index + 1}
+              </button>
+            ))}
+            <button
+              disabled={currentPage === totalPages}
+              onClick={() => setCurrentPage((prev) => prev + 1)}
+              className="px-4 py-2 border rounded-md hover:bg-gray-50 disabled:opacity-50"
+            >
+              Next
+            </button>
+          </div>
+        </div>
       </div>
       {isPopupVisible && (
         <div className="fixed inset-0 z-50 flex items-center justify-center bg-black bg-opacity-50">

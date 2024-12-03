@@ -42,18 +42,18 @@ export default function Footer() {
             <h2 className="text-lg font-semibold mb-4">Let Us Help You</h2>
             <ul className="space-y-2">
               {[
-                "Your Orders",
-                "Returns & Replacements",
-                "Shipping Rates & Policies",
-                "Refund and Returns Policy",
-                "Privacy Policy",
-                "Terms and Conditions",
-                "Cookie Settings",
-                "Help Center"
-              ].map((item) => (
-                <li key={item}>
-                  <Link href="#" className="text-sm text-muted-foreground hover:text-primary hover:underline">
-                    {item}
+  { label: "Your Orders", path: "/myaccount" },
+  { label: "Returns & Replacements", path: "/privacy/return-refund" },
+  { label: "Shipping Rates & Policies", path: "/privacy/return-refund" },
+  { label: "Refund and Returns Policy", path: "/privacy/return-refund" },
+  { label: "Privacy Policy", path: "/privacy/privacy-policy" },
+  { label: "Terms and Conditions", path: "/privacy/term-condition" },
+  { label: "Cookie Settings", path: "/privacy/term-condition" },
+  { label: "Help Center", path: "/contact" },
+].map((item, index) => (
+                <li key={index}>
+                  <Link href={item.path} className="text-sm text-muted-foreground hover:text-primary hover:underline">
+                    {item.label}
                   </Link>
                 </li>
               ))}
@@ -65,18 +65,19 @@ export default function Footer() {
             <h2 className="text-lg font-semibold mb-4">Make Money with Us</h2>
             <ul className="space-y-2">
               {[
-                "Sell on Blonwe",
-                "Sell Your Services on Blonwe",
-                "Sell on Blonwe Business",
-                "Sell Your Apps on Blonwe",
-                "Become an Affiliate",
-                "Advertise Your Products",
-                "Self-Publish with Us",
-                "Become an Blonwe Vendor"
-              ].map((item) => (
-                <li key={item}>
-                  <Link href="#" className="text-sm text-muted-foreground hover:text-primary hover:underline">
-                    {item}
+                { label: "Sell on Blonwe", path: "/about" },
+  { label: "Sell Your Services on Blonwe", path: "/contact" },
+  { label: "Sell on Blonwe Business", path: "/contact" },
+  { label: "Sell Your Apps on Blonwe", path: "/shop" },
+  { label: "Become an Affiliate", path: "/contact/contact-3" },
+  { label: "Advertise Your Products", path: "/privacy/term-condition" },
+  { label: "Self-Publish with Us", path: "/privacy/term-condition" },
+  { label: "Become a Blonwe Vendor", path: "/privacy/privacy-policy" },
+
+              ].map((item, index) => (
+                <li key={index}>
+                  <Link href={item.path} className="text-sm text-muted-foreground hover:text-primary hover:underline">
+                    {item.label}
                   </Link>
                 </li>
               ))}

@@ -32,11 +32,12 @@ export default function Page() {
   const imageRef = useRef(null);
 
   const handleMouseMove = (e) => {
-    const { left, top, width, height } =
-      imageRef.current.getBoundingClientRect();
-    const x = ((e.pageX - left) / width) * 100;
-    const y = ((e.pageY - top) / height) * 100;
-    setBackgroundPosition(`${x}% ${y}%`);
+    if (imageRef.current) {
+      const { left, top, width, height } = imageRef.current.getBoundingClientRect();
+      const x = ((e.clientX - left) / width) * 100;
+      const y = ((e.clientY - top) / height) * 100;
+      setBackgroundPosition(`${x}% ${y}%`);
+    }
   };
 
   const thumbnails = [img1, img1, img1];
@@ -60,28 +61,27 @@ export default function Page() {
             <MdOutlineZoomOutMap className="h-4 w-4" />
           </button>
           <div
-            className="relative w-[600px] h-[600px] overflow-hidden rounded-lg"
-            onMouseMove={handleMouseMove}
-          >
-            {/* Main Image */}
-            <Image
-              ref={imageRef}
-              src={selectedImage} // Update the path to your image
-              alt="Huawei Watch GT 2 Pro"
-              className="object-cover rounded-lg"
-              layout="fill" // Adjusts to the parent container dimensions
-            />
+      className="relative w-[300px] h-[300px] md:w-[600px] md:h-[600px] overflow-hidden rounded-lg"
+      onMouseMove={handleMouseMove}
+    >
+      {/* Main Image */}
+      <Image
+        ref={imageRef}
+        src={selectedImage}
+        alt="Huawei Watch GT 2 Pro"
+        className="object-cover w-full h-full rounded-lg"
+      />
 
-            {/* Magnified Overlay */}
-            <div
-              className="absolute top-0 left-0 w-full h-full pointer-events-none rounded-lg"
-              style={{
-                backgroundImage: `url(${selectedImage})`, // Same image path
-                backgroundSize: "200%", // Adjust zoom level (200% = 2x zoom)
-                backgroundPosition: backgroundPosition,
-              }}
-            />
-          </div>
+      {/* Magnified Overlay */}
+      <div
+        className="absolute top-0 left-0 w-full h-full pointer-events-none rounded-lg"
+        style={{
+          backgroundImage: `url(${selectedImage})`,
+          backgroundSize: "200%", // Adjust zoom level (200% = 2x zoom)
+          backgroundPosition: backgroundPosition,
+        }}
+      />
+    </div>
           <div className="mt-4 flex gap-4">
             {thumbnails.map((thumb, idx) => (
               <Image

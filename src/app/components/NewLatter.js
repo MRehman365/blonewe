@@ -5,6 +5,7 @@ import news1 from "../assets/post-01-500x347.jpg";
 import news2 from "../assets/post-02-500x347.jpg";
 import news3 from "../assets/post-03-500x347.jpg";
 import news4 from "../assets/post-04-500x347.jpg";
+import Link from 'next/link';
 
 const newsArticles = [
     {
@@ -47,13 +48,14 @@ const NewLatter = () => {
       <section className="p-2 max-w-7xl mx-auto">
       <div className="flex justify-between items-center py-4">
         <h2 className="text-lg">Our News</h2>
-        <a href="" className=" hover:text-blue-500">
+        <Link href="/blog" className=" hover:text-blue-500">
           View All 
-        </a>
+        </Link>
       </div>
       <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6">
         {newsArticles.map((article) => (
-          <div
+          <Link
+          href='/blog/SingleBlog'
             key={article.id}
             className=" rounded-lg overflow-hidden"
           >
@@ -73,7 +75,7 @@ const NewLatter = () => {
                 by {article.author} • {article.date}
               </p>
             </div>
-          </div>
+          </Link>
         ))}
       </div>
     </section>

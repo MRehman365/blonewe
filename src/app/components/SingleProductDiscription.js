@@ -162,7 +162,7 @@ export default function SingleProductDiscription({handleview}) {
           {['description', 'reviews', 'more-products'].map(tab => (
             <button
               key={tab}
-              className={`relative h-9 rounded-none px-4 font-medium text-sm md:text-base ${
+              className={`relative h-9 rounded-none md:px-4 font-medium text-sm md:text-base ${
                 activeTab === tab
                   ? 'text-primary border-b-2 border-primary'
                   : 'text-muted-foreground hover:text-primary'

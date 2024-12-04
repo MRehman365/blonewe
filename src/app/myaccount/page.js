@@ -539,10 +539,10 @@ export default function AccountPage() {
                       <td className="py-4 hidden md:table-cell text-sm">
                         <div>
                           <span className="line-through text-gray-500 mr-2">
-                            ${product.originalPrice.toFixed(2)}
+                          ₹{product.originalPrice.toFixed(2)}
                           </span>
                           <span className="font-medium">
-                            ${product.salePrice.toFixed(2)}
+                          ₹{product.salePrice.toFixed(2)}
                           </span>
                         </div>
                       </td>

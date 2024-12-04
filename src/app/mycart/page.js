@@ -81,11 +81,11 @@ export default function ShoppingCart() {
                     </div>
                   </div>
                   <div className="hidden md:block">
-                    ${product.price.toFixed(2)}
+                  ₹{product.price.toFixed(2)}
                   </div>
                   <div className=" hidden md:flex items-center justify-between">
                     <div>
-                      ${(product.price * quantities[product.id]).toFixed(2)}
+                    ₹{(product.price * quantities[product.id]).toFixed(2)}
                     </div>
                   </div>
                   <div className="">
@@ -140,7 +140,7 @@ export default function ShoppingCart() {
               {/* Subtotal */}
               <div className="flex justify-between py-3 border-b">
                 <span>Subtotal</span>
-                <span>${subtotal.toFixed(2)}</span>
+                <span>₹{subtotal.toFixed(2)}</span>
               </div>
 
               {/* Shipping Section 1 */}
@@ -237,7 +237,7 @@ export default function ShoppingCart() {
                 <div className="flex justify-between">
                   <span className="text-xl font-medium">Total</span>
                   <span className="text-xl font-medium text-red-500">
-                    ${subtotal.toFixed(2)}
+                  ₹{subtotal.toFixed(2)}
                   </span>
                 </div>
               </div>

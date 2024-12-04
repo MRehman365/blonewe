@@ -2,8 +2,8 @@
 
 import React, { createContext, useState, useContext, useEffect } from "react";
 import localFont from "next/font/local";
-import "./globals.css"; // Ensure this file contains global styles
-import Navbar from "./components/Navbar"; // Adjust path if necessary
+import "./globals.css";
+import Navbar from "./components/Navbar";
 import Footer from "./components/Footer";
 import MobileFooter from "./components/MobileFooter";
 
@@ -25,7 +25,6 @@ const geistMono = localFont({
 export default function RootLayout({ children }) {
   const [theme, setTheme] = useState("light");
 
-  // Retrieve theme from localStorage on component mount
   useEffect(() => {
     const storedTheme = localStorage.getItem("theme");
     if (storedTheme) {
@@ -36,7 +35,7 @@ export default function RootLayout({ children }) {
   const toggleTheme = () => {
     setTheme((prevTheme) => {
       const newTheme = prevTheme === "light" ? "dark" : "light";
-      localStorage.setItem("theme", newTheme); // Save theme to localStorage
+      localStorage.setItem("theme", newTheme); 
       return newTheme;
     });
   };

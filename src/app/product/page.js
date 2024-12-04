@@ -15,11 +15,14 @@ import {
 } from "react-icons/fa";
 import { AiFillStar, AiOutlineStar } from "react-icons/ai";
 import img1 from "../assets/image-1-13-450x450.png";
+import img2 from "../assets/image-1-15-450x450.png";
 import ProductDetail from "../components/ProductDetail";
 import RelatedProduct from "../components/RelatedProduct";
 import { MdOutlineZoomOutMap } from "react-icons/md";
 import SubNewsLatter from "../components/SubNewsLatter";
 import SingleProductDiscription from "../components/SingleProductDiscription";
+import Magnifier from "react-magnifier";
+
 
 export default function Page() {
   const [isPopupVisible, setIsPopupVisible] = useState(false);
@@ -32,15 +35,13 @@ export default function Page() {
   const imageRef = useRef(null);
 
   const handleMouseMove = (e) => {
-    if (imageRef.current) {
-      const { left, top, width, height } = imageRef.current.getBoundingClientRect();
-      const x = ((e.clientX - left) / width) * 100;
-      const y = ((e.clientY - top) / height) * 100;
-      setBackgroundPosition(`${x}% ${y}%`);
-    }
+    const { left, top, width, height } = imageRef.current.getBoundingClientRect();
+    const x = ((e.clientX - left) / width) * 100; // Calculate horizontal position
+    const y = ((e.clientY - top) / height) * 100; // Calculate vertical position
+    setBackgroundPosition(`${x}% ${y}%`);
   };
 
-  const thumbnails = [img1, img1, img1];
+  const thumbnails = [img1, img2, img1];
 
   const incrementQuantity = () => setQuantity((prev) => prev + 1);
   const decrementQuantity = () =>
@@ -61,24 +62,25 @@ export default function Page() {
             <MdOutlineZoomOutMap className="h-4 w-4" />
           </button>
           <div
-      className="relative w-[300px] h-[300px] md:w-[600px] md:h-[600px] overflow-hidden rounded-lg"
+      className="relative w-[300px] h-[300px] md:w-[600px] md:h-[600px] overflow-hidden mx-auto"
       onMouseMove={handleMouseMove}
     >
       {/* Main Image */}
       <Image
         ref={imageRef}
-        src={selectedImage}
-        alt="Huawei Watch GT 2 Pro"
+        src={selectedImage} // Update this to your image path
+        alt="Hover to magnify"
         className="object-cover w-full h-full rounded-lg"
       />
 
       {/* Magnified Overlay */}
       <div
-        className="absolute top-0 left-0 w-full h-full pointer-events-none rounded-lg"
+    className="absolute inset-0 pointer-events-none rounded-lg bg-cover bg-center"
         style={{
-          backgroundImage: `url(${selectedImage})`,
-          backgroundSize: "200%", // Adjust zoom level (200% = 2x zoom)
-          backgroundPosition: backgroundPosition,
+          backgroundImage: selectedImage ? `url(${selectedImage})` : "none",
+          backgroundSize: "200%", 
+          backgroundPosition: backgroundPosition, 
+          backgroundRepeat: "no-repeat",
         }}
       />
     </div>

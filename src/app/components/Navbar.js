@@ -376,7 +376,7 @@ const Navbar = () => {
                   </svg>
                 </Link>
                 <div className="absolute left-1/2 transform -translate-x-1/2 z-10 hidden group-hover:block border rounded-md  py-2 w-[80%]"  style={{
-      backgroundColor: theme === "light" ? "rgba(255, 255, 255, 1)" : "#fff",
+      backgroundColor: theme === "light" ? "rgba(255, 255, 255, 1)" : "rgba(26, 32, 44, 1)",
       color: theme === "light" ? "#000" : "#fff",
     }}>
                   <nav

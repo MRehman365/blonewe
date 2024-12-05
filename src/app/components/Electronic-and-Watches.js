@@ -15,6 +15,7 @@ import prodcut8 from '../assets/image-1-17-450x450.png'
 import prodcut9 from '../assets/image-1-7-450x450.png'
 import prodcut10 from '../assets/image-1-17-450x450.png'
 import Link from "next/link"
+import { toast } from "react-toast"
 
 export default function Electronics({handleview}) {
   const products = [
@@ -120,7 +121,8 @@ export default function Electronics({handleview}) {
       image: prodcut10,
     },
   ]
-
+  const wave = () => toast.success('Product Added to Wishlist')
+  const addCart = () => toast('Product Added to Cart')
   return (
     <div className="max-w-7xl mx-auto py-8">
       <div className="flex justify-between py-2">
@@ -170,7 +172,7 @@ export default function Electronics({handleview}) {
                     <button className="p-2 bg-white rounded-full shadow-md hover:bg-gray-100" onClick={handleview} >
                       <MdOutlineZoomOutMap className="h-4 w-4 text-gray-600" />
                     </button>
-                    <button className="p-2 bg-white rounded-full shadow-md hover:bg-gray-100">
+                    <button  onClick={wave} className="p-2 bg-white rounded-full shadow-md hover:bg-gray-100">
                       <FaRegHeart className="h-4 w-4 text-gray-600" />
                     </button>
                   </div>
@@ -196,7 +198,7 @@ export default function Electronics({handleview}) {
         </div>
         </div>
         </div>
-                  <button className="mt-auto px-3 py-2 bg-[#004798] text-white text-sm font-medium rounded-md hover:bg-[#004798]/80">
+                  <button onClick={addCart} className="mt-auto px-3 py-2 bg-[#004798] text-white text-sm font-medium rounded-md hover:bg-[#004798]/80">
                     Add to cart
                   </button>
                 </div>

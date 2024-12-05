@@ -120,6 +120,8 @@ const products = [
     image: prodcut10,
   },
 ];
+const wave = () => toast.success('Product Added to Wishlist')
+  const addCart = () => toast('Product Added to Cart')
 const FernitureHome = ({ handleview }) => {
 
 
@@ -160,7 +162,7 @@ const FernitureHome = ({ handleview }) => {
                   >
                     <MdOutlineZoomOutMap className="h-4 w-4 text-gray-600" />
                   </button>
-                  <button className="p-2 bg-white rounded-full shadow-md hover:bg-gray-100">
+                  <button onClick={wave} className="p-2 bg-white rounded-full shadow-md hover:bg-gray-100">
                     <FaRegHeart className="h-4 w-4 text-gray-600" />
                   </button>
                 </div>
@@ -195,7 +197,7 @@ const FernitureHome = ({ handleview }) => {
                   </div>
                 </div>
                 <div className="flex items-center justify-between mt-auto">
-                    <button className="px-3 py-2 w-full bg-[#004798] text-white text-sm font-medium rounded-md hover:bg-[#004798]/80">
+                    <button onClick={addCart} className="px-3 py-2 w-full bg-[#004798] text-white text-sm font-medium rounded-md hover:bg-[#004798]/80">
                       Add to cart
                     </button>
                 </div>

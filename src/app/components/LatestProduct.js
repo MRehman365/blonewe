@@ -16,11 +16,26 @@ import prodcut8 from "../assets/image-1-17-450x450.png";
 import prodcut9 from "../assets/image-1-7-450x450.png";
 import prodcut10 from "../assets/image-1-17-450x450.png";
 import Link from "next/link";
+import { toast } from 'react-toast'
 
 const products = [
   {
     id: "1",
     name: "Huawei Watch GT 2 Pro Titanium 47mm",
+    discription: [
+      "Fusce sapien urna, tristique non sapien nec, rutrum fringilla eros. Etiam accumsan odio eget tempus consectetur. Aliquam et sapien nulla. Suspendisse lobortis leo ante, imperdiet tristique magna tristique eu. Nullam ultrices vulputate odio, eu iaculis nulla congue quis.",
+      "Morbi ut sapien vitae odio accumsan gravida. Morbi vitae erat auctor, eleifend nunc a, lobortis neque. Praesent aliquam dignissim viverra. Maecenas lacus odio, feugiat eu nunc sit amet, maximus sagittis dolor. Vivamus nisi sapien, elementum sit amet eros sit amet, ultricies cursus ipsum. Sed consequat luctus ligula. Curabitur laoreet rhoncus blandit. Aenean vel diam ut arcu pharetra dignissim ut sed leo. Vivamus faucibus, ipsum in vestibulum vulputate, lorem orci convallis quam, sit amet consequat nulla felis pharetra lacus. Duis semper erat mauris, sed egestas purus commodo vel.",
+    ],
+    points: [
+      "Delivered today (order Mon-Fri before 12:00, delivery between 17:00 and 22:00)",
+      "Including shipping costs, sent by klbtheme.com",
+      "Pick up at a klbtheme.com collection point is possible",
+      "30 days to change your mind and free returns",
+      "Day and night customer service"
+    ],
+    category: "Electronics, Watches",
+    tags: "Huawei, watches",
+    sku: "K1G7W3Q412",
     price: 79.99,
     originalPrice: 99.99,
     discount: 21,
@@ -38,6 +53,20 @@ const products = [
     rating: 4.33,
     reviews: 3,
     image: prodcut2,
+    discription: [
+      "Fusce sapien urna, tristique non sapien nec, rutrum fringilla eros. Etiam accumsan odio eget tempus consectetur. Aliquam et sapien nulla. Suspendisse lobortis leo ante, imperdiet tristique magna tristique eu. Nullam ultrices vulputate odio, eu iaculis nulla congue quis.",
+      "Morbi ut sapien vitae odio accumsan gravida. Morbi vitae erat auctor, eleifend nunc a, lobortis neque. Praesent aliquam dignissim viverra. Maecenas lacus odio, feugiat eu nunc sit amet, maximus sagittis dolor. Vivamus nisi sapien, elementum sit amet eros sit amet, ultricies cursus ipsum. Sed consequat luctus ligula. Curabitur laoreet rhoncus blandit. Aenean vel diam ut arcu pharetra dignissim ut sed leo. Vivamus faucibus, ipsum in vestibulum vulputate, lorem orci convallis quam, sit amet consequat nulla felis pharetra lacus. Duis semper erat mauris, sed egestas purus commodo vel.",
+    ],
+    points: [
+      "Delivered today (order Mon-Fri before 12:00, delivery between 17:00 and 22:00)",
+      "Including shipping costs, sent by klbtheme.com",
+      "Pick up at a klbtheme.com collection point is possible",
+      "30 days to change your mind and free returns",
+      "Day and night customer service"
+    ],
+    category: "Electronics, Watches",
+    tags: "Huawei, watches",
+    sku: "K1G7W3Q412",
   },
   {
     id: "3",
@@ -48,6 +77,20 @@ const products = [
     rating: 3.33,
     reviews: 3,
     image: prodcut3,
+    discription: [
+      "Fusce sapien urna, tristique non sapien nec, rutrum fringilla eros. Etiam accumsan odio eget tempus consectetur. Aliquam et sapien nulla. Suspendisse lobortis leo ante, imperdiet tristique magna tristique eu. Nullam ultrices vulputate odio, eu iaculis nulla congue quis.",
+      "Morbi ut sapien vitae odio accumsan gravida. Morbi vitae erat auctor, eleifend nunc a, lobortis neque. Praesent aliquam dignissim viverra. Maecenas lacus odio, feugiat eu nunc sit amet, maximus sagittis dolor. Vivamus nisi sapien, elementum sit amet eros sit amet, ultricies cursus ipsum. Sed consequat luctus ligula. Curabitur laoreet rhoncus blandit. Aenean vel diam ut arcu pharetra dignissim ut sed leo. Vivamus faucibus, ipsum in vestibulum vulputate, lorem orci convallis quam, sit amet consequat nulla felis pharetra lacus. Duis semper erat mauris, sed egestas purus commodo vel.",
+    ],
+    points: [
+      "Delivered today (order Mon-Fri before 12:00, delivery between 17:00 and 22:00)",
+      "Including shipping costs, sent by klbtheme.com",
+      "Pick up at a klbtheme.com collection point is possible",
+      "30 days to change your mind and free returns",
+      "Day and night customer service"
+    ],
+    category: "Electronics, Watches",
+    tags: "Huawei, watches",
+    sku: "K1G7W3Q412",
   },
   {
     id: "4",
@@ -58,6 +101,20 @@ const products = [
     rating: 3.67,
     reviews: 3,
     image: prodcut4,
+    discription: [
+      "Fusce sapien urna, tristique non sapien nec, rutrum fringilla eros. Etiam accumsan odio eget tempus consectetur. Aliquam et sapien nulla. Suspendisse lobortis leo ante, imperdiet tristique magna tristique eu. Nullam ultrices vulputate odio, eu iaculis nulla congue quis.",
+      "Morbi ut sapien vitae odio accumsan gravida. Morbi vitae erat auctor, eleifend nunc a, lobortis neque. Praesent aliquam dignissim viverra. Maecenas lacus odio, feugiat eu nunc sit amet, maximus sagittis dolor. Vivamus nisi sapien, elementum sit amet eros sit amet, ultricies cursus ipsum. Sed consequat luctus ligula. Curabitur laoreet rhoncus blandit. Aenean vel diam ut arcu pharetra dignissim ut sed leo. Vivamus faucibus, ipsum in vestibulum vulputate, lorem orci convallis quam, sit amet consequat nulla felis pharetra lacus. Duis semper erat mauris, sed egestas purus commodo vel.",
+    ],
+    points: [
+      "Delivered today (order Mon-Fri before 12:00, delivery between 17:00 and 22:00)",
+      "Including shipping costs, sent by klbtheme.com",
+      "Pick up at a klbtheme.com collection point is possible",
+      "30 days to change your mind and free returns",
+      "Day and night customer service"
+    ],
+    category: "Electronics, Watches",
+    tags: "Huawei, watches",
+    sku: "K1G7W3Q412",
   },
   {
     id: "5",
@@ -68,6 +125,20 @@ const products = [
     rating: 4.0,
     reviews: 3,
     image: prodcut5,
+    discription: [
+      "Fusce sapien urna, tristique non sapien nec, rutrum fringilla eros. Etiam accumsan odio eget tempus consectetur. Aliquam et sapien nulla. Suspendisse lobortis leo ante, imperdiet tristique magna tristique eu. Nullam ultrices vulputate odio, eu iaculis nulla congue quis.",
+      "Morbi ut sapien vitae odio accumsan gravida. Morbi vitae erat auctor, eleifend nunc a, lobortis neque. Praesent aliquam dignissim viverra. Maecenas lacus odio, feugiat eu nunc sit amet, maximus sagittis dolor. Vivamus nisi sapien, elementum sit amet eros sit amet, ultricies cursus ipsum. Sed consequat luctus ligula. Curabitur laoreet rhoncus blandit. Aenean vel diam ut arcu pharetra dignissim ut sed leo. Vivamus faucibus, ipsum in vestibulum vulputate, lorem orci convallis quam, sit amet consequat nulla felis pharetra lacus. Duis semper erat mauris, sed egestas purus commodo vel.",
+    ],
+    points: [
+      "Delivered today (order Mon-Fri before 12:00, delivery between 17:00 and 22:00)",
+      "Including shipping costs, sent by klbtheme.com",
+      "Pick up at a klbtheme.com collection point is possible",
+      "30 days to change your mind and free returns",
+      "Day and night customer service"
+    ],
+    category: "Electronics, Watches",
+    tags: "Huawei, watches",
+    sku: "K1G7W3Q412",
   },
   {
     id: "6",
@@ -79,6 +150,20 @@ const products = [
     reviews: 3,
     image: prodcut6,
     store: "graci",
+    discription: [
+      "Fusce sapien urna, tristique non sapien nec, rutrum fringilla eros. Etiam accumsan odio eget tempus consectetur. Aliquam et sapien nulla. Suspendisse lobortis leo ante, imperdiet tristique magna tristique eu. Nullam ultrices vulputate odio, eu iaculis nulla congue quis.",
+      "Morbi ut sapien vitae odio accumsan gravida. Morbi vitae erat auctor, eleifend nunc a, lobortis neque. Praesent aliquam dignissim viverra. Maecenas lacus odio, feugiat eu nunc sit amet, maximus sagittis dolor. Vivamus nisi sapien, elementum sit amet eros sit amet, ultricies cursus ipsum. Sed consequat luctus ligula. Curabitur laoreet rhoncus blandit. Aenean vel diam ut arcu pharetra dignissim ut sed leo. Vivamus faucibus, ipsum in vestibulum vulputate, lorem orci convallis quam, sit amet consequat nulla felis pharetra lacus. Duis semper erat mauris, sed egestas purus commodo vel.",
+    ],
+    points: [
+      "Delivered today (order Mon-Fri before 12:00, delivery between 17:00 and 22:00)",
+      "Including shipping costs, sent by klbtheme.com",
+      "Pick up at a klbtheme.com collection point is possible",
+      "30 days to change your mind and free returns",
+      "Day and night customer service"
+    ],
+    category: "Electronics, Watches",
+    tags: "Huawei, watches",
+    sku: "K1G7W3Q412",
   },
   {
     id: "7",
@@ -89,6 +174,20 @@ const products = [
     rating: 4.33,
     reviews: 3,
     image: prodcut7,
+    discription: [
+      "Fusce sapien urna, tristique non sapien nec, rutrum fringilla eros. Etiam accumsan odio eget tempus consectetur. Aliquam et sapien nulla. Suspendisse lobortis leo ante, imperdiet tristique magna tristique eu. Nullam ultrices vulputate odio, eu iaculis nulla congue quis.",
+      "Morbi ut sapien vitae odio accumsan gravida. Morbi vitae erat auctor, eleifend nunc a, lobortis neque. Praesent aliquam dignissim viverra. Maecenas lacus odio, feugiat eu nunc sit amet, maximus sagittis dolor. Vivamus nisi sapien, elementum sit amet eros sit amet, ultricies cursus ipsum. Sed consequat luctus ligula. Curabitur laoreet rhoncus blandit. Aenean vel diam ut arcu pharetra dignissim ut sed leo. Vivamus faucibus, ipsum in vestibulum vulputate, lorem orci convallis quam, sit amet consequat nulla felis pharetra lacus. Duis semper erat mauris, sed egestas purus commodo vel.",
+    ],
+    points: [
+      "Delivered today (order Mon-Fri before 12:00, delivery between 17:00 and 22:00)",
+      "Including shipping costs, sent by klbtheme.com",
+      "Pick up at a klbtheme.com collection point is possible",
+      "30 days to change your mind and free returns",
+      "Day and night customer service"
+    ],
+    category: "Electronics, Watches",
+    tags: "Huawei, watches",
+    sku: "K1G7W3Q412",
   },
   {
     id: "8",
@@ -99,6 +198,20 @@ const products = [
     rating: 3.33,
     reviews: 3,
     image: prodcut8,
+    discription: [
+      "Fusce sapien urna, tristique non sapien nec, rutrum fringilla eros. Etiam accumsan odio eget tempus consectetur. Aliquam et sapien nulla. Suspendisse lobortis leo ante, imperdiet tristique magna tristique eu. Nullam ultrices vulputate odio, eu iaculis nulla congue quis.",
+      "Morbi ut sapien vitae odio accumsan gravida. Morbi vitae erat auctor, eleifend nunc a, lobortis neque. Praesent aliquam dignissim viverra. Maecenas lacus odio, feugiat eu nunc sit amet, maximus sagittis dolor. Vivamus nisi sapien, elementum sit amet eros sit amet, ultricies cursus ipsum. Sed consequat luctus ligula. Curabitur laoreet rhoncus blandit. Aenean vel diam ut arcu pharetra dignissim ut sed leo. Vivamus faucibus, ipsum in vestibulum vulputate, lorem orci convallis quam, sit amet consequat nulla felis pharetra lacus. Duis semper erat mauris, sed egestas purus commodo vel.",
+    ],
+    points: [
+      "Delivered today (order Mon-Fri before 12:00, delivery between 17:00 and 22:00)",
+      "Including shipping costs, sent by klbtheme.com",
+      "Pick up at a klbtheme.com collection point is possible",
+      "30 days to change your mind and free returns",
+      "Day and night customer service"
+    ],
+    category: "Electronics, Watches",
+    tags: "Huawei, watches",
+    sku: "K1G7W3Q412",
   },
   {
     id: "9",
@@ -109,6 +222,20 @@ const products = [
     rating: 3.67,
     reviews: 3,
     image: prodcut9,
+    discription: [
+      "Fusce sapien urna, tristique non sapien nec, rutrum fringilla eros. Etiam accumsan odio eget tempus consectetur. Aliquam et sapien nulla. Suspendisse lobortis leo ante, imperdiet tristique magna tristique eu. Nullam ultrices vulputate odio, eu iaculis nulla congue quis.",
+      "Morbi ut sapien vitae odio accumsan gravida. Morbi vitae erat auctor, eleifend nunc a, lobortis neque. Praesent aliquam dignissim viverra. Maecenas lacus odio, feugiat eu nunc sit amet, maximus sagittis dolor. Vivamus nisi sapien, elementum sit amet eros sit amet, ultricies cursus ipsum. Sed consequat luctus ligula. Curabitur laoreet rhoncus blandit. Aenean vel diam ut arcu pharetra dignissim ut sed leo. Vivamus faucibus, ipsum in vestibulum vulputate, lorem orci convallis quam, sit amet consequat nulla felis pharetra lacus. Duis semper erat mauris, sed egestas purus commodo vel.",
+    ],
+    points: [
+      "Delivered today (order Mon-Fri before 12:00, delivery between 17:00 and 22:00)",
+      "Including shipping costs, sent by klbtheme.com",
+      "Pick up at a klbtheme.com collection point is possible",
+      "30 days to change your mind and free returns",
+      "Day and night customer service"
+    ],
+    category: "Electronics, Watches",
+    tags: "Huawei, watches",
+    sku: "K1G7W3Q412",
   },
   {
     id: "10",
@@ -119,6 +246,20 @@ const products = [
     rating: 4.0,
     reviews: 3,
     image: prodcut10,
+    discription: [
+      "Fusce sapien urna, tristique non sapien nec, rutrum fringilla eros. Etiam accumsan odio eget tempus consectetur. Aliquam et sapien nulla. Suspendisse lobortis leo ante, imperdiet tristique magna tristique eu. Nullam ultrices vulputate odio, eu iaculis nulla congue quis.",
+      "Morbi ut sapien vitae odio accumsan gravida. Morbi vitae erat auctor, eleifend nunc a, lobortis neque. Praesent aliquam dignissim viverra. Maecenas lacus odio, feugiat eu nunc sit amet, maximus sagittis dolor. Vivamus nisi sapien, elementum sit amet eros sit amet, ultricies cursus ipsum. Sed consequat luctus ligula. Curabitur laoreet rhoncus blandit. Aenean vel diam ut arcu pharetra dignissim ut sed leo. Vivamus faucibus, ipsum in vestibulum vulputate, lorem orci convallis quam, sit amet consequat nulla felis pharetra lacus. Duis semper erat mauris, sed egestas purus commodo vel.",
+    ],
+    points: [
+      "Delivered today (order Mon-Fri before 12:00, delivery between 17:00 and 22:00)",
+      "Including shipping costs, sent by klbtheme.com",
+      "Pick up at a klbtheme.com collection point is possible",
+      "30 days to change your mind and free returns",
+      "Day and night customer service"
+    ],
+    category: "Electronics, Watches",
+    tags: "Huawei, watches",
+    sku: "K1G7W3Q412",
   },
 ];
 const LatestProduct = ({ handleview }) => {
@@ -175,6 +316,8 @@ const LatestProduct = ({ handleview }) => {
       },
     ],
   };
+  const wave = () => toast.success('Product Added to Wishlist')
+  const addCart = () => toast('Product Added to Cart')
   return (
     <div className="max-w-7xl mx-auto p-2 overflow-hidden">
       <div className="flex justify-between py-2">
@@ -208,7 +351,7 @@ const LatestProduct = ({ handleview }) => {
           <div key={i}>
             <div className="group relative overflow-hidden w-full transition-all duration-300 h-full flex flex-col border border-gray-200 mx-auto">
               <div className="relative aspect-square">
-              <Link href='/product' >
+              <Link href={`/product/${product.id}`} >
                 <Image
                   src={product.image}
                   alt={product.name}
@@ -231,7 +374,7 @@ const LatestProduct = ({ handleview }) => {
                     <MdOutlineZoomOutMap className="h-4 w-4 text-gray-600" />
                   </button>
                   <button className="p-2 bg-white rounded-full shadow-md hover:bg-gray-100">
-                    <FaRegHeart className="h-4 w-4 text-gray-600" />
+                    <FaRegHeart className="h-4 w-4 text-gray-600" onClick={wave} />
                   </button>
                 </div>
               </div>
@@ -265,7 +408,7 @@ const LatestProduct = ({ handleview }) => {
                   </div>
                 </div>
                 <div className="flex items-center justify-between mt-auto">
-                    <button className="px-3 py-2 w-full bg-[#004798] text-white text-sm font-medium rounded-md hover:bg-[#004798]/80">
+                    <button className="px-3 py-2 w-full bg-[#004798] text-white text-sm font-medium rounded-md hover:bg-[#004798]/80" onClick={addCart}>
                       Add to cart
                     </button>
                 </div>

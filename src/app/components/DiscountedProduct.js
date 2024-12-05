@@ -16,6 +16,7 @@ import prodcut8 from "../assets/image-1-17-450x450.png";
 import prodcut9 from "../assets/image-1-7-450x450.png";
 import prodcut10 from "../assets/image-1-17-450x450.png";
 import { useTheme } from "../layout";
+import { toast } from "react-toast";
 
 const products = [
   {
@@ -176,6 +177,8 @@ const DiscountedProduct = ({ handleview }) => {
       },
     ],
   };
+  const wave = () => toast.success('Product Added to Wishlist')
+  const addCart = () => toast('Product Added to Cart')
   return (
     <div className="max-w-7xl mx-auto p-2 overflow-hidden" >
       <div className="flex justify-between py-2">
@@ -224,13 +227,13 @@ const DiscountedProduct = ({ handleview }) => {
                   className={`absolute right-2 top-2 flex-col gap-2 transition-opacity duration-300 hidden group-hover:flex`}
                 >
                   <button
-                    className="p-2 bg-white rounded-full shadow-md hover:bg-gray-100"
+                    className="p-2 bg-gray-50 rounded-full shadow-md hover:bg-gray-100"
                     onClick={handleview}
                   >
                     <MdOutlineZoomOutMap className="h-4 w-4 text-gray-600" />
                   </button>
-                  <button className="p-2 bg-white rounded-full shadow-md hover:bg-gray-100">
-                    <FaRegHeart className="h-4 w-4 text-gray-600" />
+                  <button className="p-2 bg-gray-50 rounded-full shadow-md hover:bg-gray-100">
+                    <FaRegHeart className="h-4 w-4 text-gray-600" onClick={wave} />
                   </button>
                 </div>
               </div>
@@ -264,7 +267,7 @@ const DiscountedProduct = ({ handleview }) => {
                   </div>
                 </div>
                 <div className="flex items-center justify-between mt-auto">
-                    <button className="px-3 py-2 w-full bg-[#004798] text-white text-sm font-medium rounded-md hover:bg-[#004798]/80">
+                    <button onClick={addCart} className="px-3 py-2 w-full bg-[#004798] text-white text-sm font-medium rounded-md hover:bg-[#004798]/80">
                       Add to cart
                     </button>
                 </div>

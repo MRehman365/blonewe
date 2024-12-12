@@ -29,6 +29,7 @@ const Features = () => {
       description: "On every order over $120.00",
     },
   ];
+  
 
   return (
     <div className="max-w-7xl mx-auto py-8 px-4">

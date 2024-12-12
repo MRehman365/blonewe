@@ -6,6 +6,7 @@ import "./globals.css";
 import Navbar from "./components/Navbar";
 import Footer from "./components/Footer";
 import MobileFooter from "./components/MobileFooter";
+import { ToastContainer, toast } from 'react-toast'
 
 const ThemeContext = createContext();
 
@@ -54,6 +55,7 @@ export default function RootLayout({ children }) {
           <main className="sm:mt-[50px] md:mt-0">{children}</main>
           <Footer />
           <MobileFooter />
+          <ToastContainer position="bottom-right" delay={5000} />
         </body>
       </ThemeContext.Provider>
     </html>

@@ -5,10 +5,15 @@ import { FaRegCircleUser } from 'react-icons/fa6'
 import { FiMenu } from 'react-icons/fi'
 import { IoIosHeartEmpty, IoIosMenu } from 'react-icons/io'
 import { IoSearchOutline, IoStorefrontOutline } from 'react-icons/io5'
+import { useTheme } from '../layout'
 
 const MobileFooter = () => {
+  const { theme, toggleTheme } = useTheme();
   return (
-    <div className="fixed bottom-0 left-0 right-0 border-t md:hidden bg-white">
+    <div className="fixed bottom-0 left-0 right-0 border-t md:hidden" style={{
+      backgroundColor: theme === "light" ? "rgba(255, 255, 255, 1)" : "rgba(26, 32, 44, 1)",
+      color: theme === "light" ? "#000" : "#fff",
+    }}>
     <nav className="flex items-center justify-between px-4 py-2">
       <Link
         href="/shop" 
